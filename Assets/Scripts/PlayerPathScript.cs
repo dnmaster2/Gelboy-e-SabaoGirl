@@ -13,7 +13,6 @@ public class PlayerPathScript : MonoBehaviour
 
     Camera cam;
     public GameObject cursor;
-    public float floorHeight;
     bool moving;
 
     public float speed = 2;
@@ -73,7 +72,7 @@ public class PlayerPathScript : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && moving)
         {
             moving = false;
             NewPath(cursor.transform.position);
