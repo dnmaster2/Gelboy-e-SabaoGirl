@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Scenario
   - Enemy
+  - Cursor
   layers:
   - Default
   - TransparentFX
