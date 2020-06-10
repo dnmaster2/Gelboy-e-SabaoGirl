@@ -5,26 +5,26 @@ using Pathfinding;
 
 public class PlayerPathScript : MonoBehaviour
 {
-    public Transform targetPosition;
-
     private Seeker seeker;
     private CharacterController controller;
     public Path path;
 
-    Camera cam;
-    public GameObject cursor;
-    bool moving;
-
     public float speed = 2;
     public float nextWaypointDistance = 3;
-    private int currentWaypoint = 0;
     public bool reachedEndOfPath;
+    private int currentWaypoint = 0;
 
-    public void Start()
+    public void Awake()
     {
-        cam = Camera.main;
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
+    }
+
+    public void ResetPath()
+    {
+        path = null;
+        speed = 2;
+        nextWaypointDistance = 3;
     }
 
     public void OnPathComplete(Path p)
@@ -45,39 +45,6 @@ public class PlayerPathScript : MonoBehaviour
 
     public void Update()
     {
-        cursor.SetActive(moving);
-        if (Input.GetMouseButton(0))
-        {
-            if (!moving)
-            {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        moving = true;
-                        cursor.transform.position = hit.point;
-                    }
-                }
-            }
-            if (moving)
-            {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    cursor.transform.position = hit.point;
-                }
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0) && moving)
-        {
-            moving = false;
-            NewPath(cursor.transform.position);
-        }
-
         if (path == null)
         {
             return;

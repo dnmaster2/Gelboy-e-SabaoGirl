@@ -12,18 +12,21 @@ public class EnemyIA : MonoBehaviour
     private CharacterController controller;
     public Path path;
     public Transform targetPosition;
+    Attributes attributes;
 
     public float speed = 2;
+    public int rewardPoints;
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
     public bool reachedEndOfPath;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
+        attributes = GetComponent<Attributes>();
     }
 
     public void OnPathComplete(Path p)
@@ -37,9 +40,21 @@ public class EnemyIA : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    public void ResetPath()
+    {
+        path = null;
+        speed = 2;
+        nextWaypointDistance = 3;
+    }
+
     void Update()
     {
+        if (attributes.health <= 0)
+        {
+            targetPosition.gameObject.GetComponent<Attributes>().points += rewardPoints;
+            Destroy(gameObject);
+        }
+
         Vector3 positionInViewport = cam.WorldToViewportPoint(transform.position);
 
         if (positionInViewport.x > minViewpoint && positionInViewport.x < maxViewpoint

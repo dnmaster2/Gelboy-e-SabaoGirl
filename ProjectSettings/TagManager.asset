@@ -7,6 +7,7 @@ TagManager:
   - Scenario
   - Enemy
   - Cursor
+  - Walkable
   layers:
   - Default
   - TransparentFX

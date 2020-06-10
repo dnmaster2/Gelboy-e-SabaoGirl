@@ -25,11 +25,6 @@ public class TeleportSkill : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CallTeleport();
-        }
-
         teleportCursor.GetComponent<Renderer>().enabled = preparing;
 
         if (preparing)
@@ -52,7 +47,6 @@ public class TeleportSkill : MonoBehaviour
 
     IEnumerator RunSkill()
     {
-        print("aguardando");
         yield return new WaitForSeconds(.3f);
         rend.enabled = false;
         playerPath.NewPath(teleportDestination);

@@ -6,32 +6,28 @@ public class AreaDamageSkill : MonoBehaviour
 {
     public bool startDamage;
     public float areaSize;
+    public Attributes playerAttributes;
+
+    private void Awake()
+    {
+        playerAttributes = GetComponent<Attributes>();
+    }
 
     public void CallAreaDamage()
     {
-        print("chamando corrotina");
         StartCoroutine(AreaDamage());
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            print("botao pressionado");
-            CallAreaDamage();
-        }
     }
 
     IEnumerator AreaDamage()
     {
         yield return new WaitForSeconds(.2f);
-        print("Castando raycasts");
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, areaSize, Vector3.forward);
         foreach(RaycastHit hit in hits)
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                print(hit.collider.tag + " receberia dano!");
+                print("inimigo atingido");
+                hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
             }
         }
     }
