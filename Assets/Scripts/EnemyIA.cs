@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class EnemyIA : MonoBehaviour
 {
-    public bool dead, onCamera;
+    public bool dead, onCamera, stunned;
     public int maxViewpoint = 1;
     public int minViewpoint = 0;
     public float rotationSpeed;
@@ -50,6 +50,14 @@ public class EnemyIA : MonoBehaviour
         nextWaypointDistance = 3;
     }
 
+    IEnumerator Stun(float stunTime)
+    {
+        stunned = true;
+        path = null;
+        yield return new WaitForSeconds(stunTime);
+        stunned = false;
+    }
+
     void Update()
     {
         if (attributes.health <= 0 && !dead)
@@ -68,11 +76,6 @@ public class EnemyIA : MonoBehaviour
         {
             targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
             seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
-
-            var lookPos = targetPosition.position - transform.position;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
@@ -80,8 +83,12 @@ public class EnemyIA : MonoBehaviour
             path = null;
         }
 
-        if (!dead && onCamera)
+        if (!dead && !stunned && onCamera)
         {
+            var lookPos = targetPosition.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
             if (path == null)
             {
