@@ -5,14 +5,17 @@ using Pathfinding;
 
 public class EnemyIA : MonoBehaviour
 {
+    public bool dead, onCamera;
     public int maxViewpoint = 1;
     public int minViewpoint = 0;
-    private Seeker seeker;
+    public float rotationSpeed;
+
+    Seeker seeker;
     Camera cam;
-    private CharacterController controller;
+    CharacterController controller;
+    Attributes attributes;
     public Path path;
     public Transform targetPosition;
-    Attributes attributes;
 
     public float speed = 2;
     public int rewardPoints;
@@ -49,19 +52,26 @@ public class EnemyIA : MonoBehaviour
 
     void Update()
     {
-        if (attributes.health <= 0)
+        if (attributes.health <= 0 && !dead)
         {
+            Destroy(GetComponent<Collider>());
+            Destroy(controller);
             GameObject.Find("Canvas").GetComponent<UIControler>().HitCombo(rewardPoints);
-            Destroy(gameObject);
+            Destroy(gameObject, 2f);
+            dead = true;
         }
-
         Vector3 positionInViewport = cam.WorldToViewportPoint(transform.position);
+        onCamera = positionInViewport.x > minViewpoint && positionInViewport.x < maxViewpoint
+            && positionInViewport.y > minViewpoint && positionInViewport.y < maxViewpoint;
 
-        if (positionInViewport.x > minViewpoint && positionInViewport.x < maxViewpoint
-            && positionInViewport.y > minViewpoint && positionInViewport.y < maxViewpoint)
+        if (onCamera)
         {
             targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
             seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
+            var lookPos = targetPosition.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
@@ -69,38 +79,42 @@ public class EnemyIA : MonoBehaviour
             path = null;
         }
 
-        if (path == null)
+        if (!dead && onCamera)
         {
-            return;
-        }
 
-        reachedEndOfPath = false;
-        float distanceToWaypoint;
-        while (true)
-        {
-            distanceToWaypoint = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
-            if (distanceToWaypoint < nextWaypointDistance)
+            if (path == null)
             {
-                if (currentWaypoint + 1 < path.vectorPath.Count)
+                return;
+            }
+
+            reachedEndOfPath = false;
+            float distanceToWaypoint;
+            while (true)
+            {
+                distanceToWaypoint = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
+                if (distanceToWaypoint < nextWaypointDistance)
                 {
-                    currentWaypoint++;
+                    if (currentWaypoint + 1 < path.vectorPath.Count)
+                    {
+                        currentWaypoint++;
+                    }
+                    else
+                    {
+                        reachedEndOfPath = true;
+                        break;
+                    }
                 }
                 else
                 {
-                    reachedEndOfPath = true;
                     break;
                 }
             }
-            else
-            {
-                break;
-            }
-        }
 
-        var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / nextWaypointDistance) : 1f;
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        Vector3 velocity = dir * speed * speedFactor;
-        controller.SimpleMove(velocity);
+            var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / nextWaypointDistance) : 1f;
+            Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+            Vector3 velocity = dir * speed * speedFactor;
+            controller.SimpleMove(velocity);
+        }
 
     }
 }

@@ -32,9 +32,34 @@ public class CombatScript : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
                     pathScript.ResetSpeed();
+                    startCombat = false;
                 }
             }
         }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+            playerAttributes.health -= other.GetComponent<FireScript>().damage;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        StartCoroutine(FireDamage(other.GetComponent<FireScript>().burnTime, 1));
+    }
+
+    IEnumerator FireDamage(float burnTime, int damage)
+    {
+        float i = 0;
+        while(i < burnTime)
+        {
+            print("queimando!");
+            playerAttributes.health -= damage;
+            i += .5f;
+            yield return new WaitForSeconds(.5f);
+        }
     }
 }

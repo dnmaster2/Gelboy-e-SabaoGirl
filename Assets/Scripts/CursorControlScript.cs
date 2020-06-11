@@ -6,6 +6,7 @@ public class CursorControlScript : MonoBehaviour
 {
     Camera cam;
     public GameObject cursor;
+    public float buffCombatTarget;
     GameObject target;
     bool moving;
     bool combat;
@@ -21,6 +22,11 @@ public class CursorControlScript : MonoBehaviour
 
     private void Update()
     {
+        var lookPos = cursor.transform.position - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+
         cursor.SetActive(moving);
         if (Input.GetMouseButton(0))
         {
@@ -71,7 +77,7 @@ public class CursorControlScript : MonoBehaviour
                 if (target)
                 {
                     combatScript.DashTarget(target, target.tag);
-                    pathfinding.NewPath(target.transform.position);
+                    pathfinding.NewPath(target.transform.position + transform.forward * buffCombatTarget);
                     pathfinding.speed *= 4;
                 }              
             }

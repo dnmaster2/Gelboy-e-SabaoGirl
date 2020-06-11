@@ -5,12 +5,28 @@ using UnityEngine.UI;
 
 public class UIControler : MonoBehaviour
 {
-    public Button skillButton;
+    [Header("Referencias ao jogador")]
     public GameObject player;
     public Attributes playerAttributes;
-    public float paddingBetweenButtons, comboCooldown, nextCooldownDifference;
-    public int multiplierCombo = 1, pontos;
-    public Text pontosTXT, tempo, combo;
+    [Space]
+    [Header("Atributos")]
+    public float paddingBetweenButtons;
+    public float comboCooldown;
+    public float nextCooldownDifference;
+    public int timeToEndStage;
+    public int multiplierCombo = 1;
+    public int pontos;
+    [Space]
+    [Header("Referencias do Canvas")]
+    public Text pontosTXT;
+    public Text tempo;
+    public Text combo;
+    public Text healthTXT;
+    public Button skillButton;
+    public Slider healthBar;
+    public Image fillHealthBar;
+    public Gradient colorBar;
+
     float cooldownFirstValue;
     private void Awake()
     {
@@ -27,13 +43,17 @@ public class UIControler : MonoBehaviour
 
         playerAttributes = player.GetComponent<Attributes>();
         cooldownFirstValue = comboCooldown;
+        healthBar.maxValue = playerAttributes.health;
     }
 
     private void Update()
     {
         pontosTXT.text = "Pontos: " + playerAttributes.points.ToString();
-        tempo.text = Mathf.RoundToInt(Time.time).ToString();
+        tempo.text = (timeToEndStage - Mathf.RoundToInt(Time.time)).ToString();
         combo.text = multiplierCombo.ToString() + "X";
+        healthBar.value = playerAttributes.health;
+        healthTXT.text = playerAttributes.health.ToString();
+        fillHealthBar.color = colorBar.Evaluate(healthBar.normalizedValue);
     }
 
     public void HitCombo(int points)
