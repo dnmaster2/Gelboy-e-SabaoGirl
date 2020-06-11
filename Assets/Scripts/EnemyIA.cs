@@ -51,7 +51,7 @@ public class EnemyIA : MonoBehaviour
     {
         if (attributes.health <= 0)
         {
-            targetPosition.gameObject.GetComponent<Attributes>().points += rewardPoints;
+            GameObject.Find("Canvas").GetComponent<UIControler>().HitCombo(rewardPoints);
             Destroy(gameObject);
         }
 

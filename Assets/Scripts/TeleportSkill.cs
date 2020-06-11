@@ -5,16 +5,16 @@ using UnityEngine;
 public class TeleportSkill : MonoBehaviour
 {
     public GameObject teleportCursor;
+    public Renderer rend;
     Camera cam;
+    public int speedMultiplier = 4;
     public bool preparing, teleporting;
     PlayerPathScript playerPath;
     Vector3 teleportDestination;
-    Renderer rend;
 
     private void Awake()
     {
         playerPath = GetComponent<PlayerPathScript>();
-        rend = GetComponent<Renderer>();
         cam = Camera.main;
     }
 
@@ -50,7 +50,7 @@ public class TeleportSkill : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         rend.enabled = false;
         playerPath.NewPath(teleportDestination);
-        playerPath.speed *= 4;
+        playerPath.speed *= speedMultiplier;
         teleporting = true;
     }
 
@@ -60,7 +60,7 @@ public class TeleportSkill : MonoBehaviour
         {
             if (teleporting)
             {
-                playerPath.speed /= 4;
+                playerPath.ResetSpeed();
                 rend.enabled = true;
                 teleporting = false;
                 teleportCursor.transform.position = Vector3.zero;

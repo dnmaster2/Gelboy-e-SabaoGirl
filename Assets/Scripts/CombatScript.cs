@@ -31,6 +31,7 @@ public class CombatScript : MonoBehaviour
                 if (startCombat)
                 {
                     hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
+                    pathScript.ResetSpeed();
                 }
             }
         }

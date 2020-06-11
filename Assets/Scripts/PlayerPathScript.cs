@@ -10,6 +10,7 @@ public class PlayerPathScript : MonoBehaviour
     public Path path;
 
     public float speed = 2;
+    float defaultSpeed;
     public float nextWaypointDistance = 3;
     public bool reachedEndOfPath;
     private int currentWaypoint = 0;
@@ -18,13 +19,12 @@ public class PlayerPathScript : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
+        defaultSpeed = speed;
     }
 
-    public void ResetPath()
+    public void ResetSpeed()
     {
-        path = null;
-        speed = 2;
-        nextWaypointDistance = 3;
+        speed = defaultSpeed;
     }
 
     public void OnPathComplete(Path p)
