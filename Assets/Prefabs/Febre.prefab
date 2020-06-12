@@ -407,6 +407,7 @@ MonoBehaviour:
   points: 0
   bestCombo: 0
   actualStage: 0
+  id: 1
 --- !u!114 &5799503488758290467
 MonoBehaviour:
   m_ObjectHideFlags: 0
