@@ -3473,6 +3473,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9164582171559729252, guid: 5c81af89becbda04aa605428d1ec5ea9,
+        type: 3}
+      propertyPath: regenerationRate
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164582171559729252, guid: 5c81af89becbda04aa605428d1ec5ea9,
+        type: 3}
+      propertyPath: damageCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9164582171559729264, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
       propertyPath: m_Name
