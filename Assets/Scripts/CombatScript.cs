@@ -60,6 +60,22 @@ public class CombatScript : MonoBehaviour
             TakeDamage(other.gameObject.GetComponent<FireScript>().damage);
             StartCoroutine(FireDamage(other.GetComponent<FireScript>().burnTime, 1));
         }
+
+        if (other.CompareTag("Punch"))
+        {
+            print("chamandoPunch");
+            other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StartPunch(this);
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Punch"))
+        {
+            print("saindoPunch");
+            other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StopPunch();
+        }
     }
 
     IEnumerator FireDamage(float burnTime, int damage)
@@ -77,11 +93,9 @@ public class CombatScript : MonoBehaviour
 
     IEnumerator RegenerationCooldown()
     {
-        print("regeneração interrompida");
         damageTaken = true;
         yield return new WaitForSeconds(damageCooldown);
         damageTaken = false;
-        print("regeneração voltou");
     }
 
     IEnumerator RegenerationRotine()
@@ -90,7 +104,6 @@ public class CombatScript : MonoBehaviour
         {            
             if (playerAttributes.health < 100)
             {
-                print("+1 de vida");
                 playerAttributes.health++;
             }
         }

@@ -74,6 +74,11 @@ public class EnemyIA : MonoBehaviour
         {
             targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
             seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
+
+            var lookPos = targetPosition.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
@@ -83,10 +88,6 @@ public class EnemyIA : MonoBehaviour
 
         if (!dead && !stunned && onCamera)
         {
-            var lookPos = targetPosition.position - transform.position;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
             if (path == null)
             {
