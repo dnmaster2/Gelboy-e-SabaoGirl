@@ -295,6 +295,7 @@ MonoBehaviour:
   points: 0
   bestCombo: 0
   actualStage: 0
+  id: 3
 --- !u!1 &7169410375559124872
 GameObject:
   m_ObjectHideFlags: 0

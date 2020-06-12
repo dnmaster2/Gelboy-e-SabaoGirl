@@ -9,4 +9,6 @@ public class Attributes : MonoBehaviour
     public int points;
     public int bestCombo;
     public int actualStage;
+    [Space]
+    public int id;
 }

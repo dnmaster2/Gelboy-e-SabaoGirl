@@ -31,6 +31,10 @@ public class CombatScript : MonoBehaviour
                 if (startCombat)
                 {
                     hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
+                    if (hit.collider.GetComponent<Attributes>().id == 4)
+                    {
+                        hit.collider.GetComponent<CoughEnemyScript>().StopExplosion(3f);
+                    }
                     pathScript.ResetSpeed();
                     startCombat = false;
                 }
