@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 155878976}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1463314373}
+        m_MethodName: ChangeScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &155878976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +802,7 @@ GameObject:
   - component: {fileID: 1463314374}
   - component: {fileID: 1463314373}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -809,6 +820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bdbaf531735d047a8a68372a9e3ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configuracoes: {fileID: 1596942453}
+  menu: {fileID: 1472343937}
 --- !u!4 &1463314374
 Transform:
   m_ObjectHideFlags: 0
@@ -1082,7 +1095,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1565715947}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1463314373}
+        m_MethodName: ChangeScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1565715947
 MonoBehaviour:
   m_ObjectHideFlags: 0
