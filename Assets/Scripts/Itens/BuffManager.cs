@@ -26,16 +26,36 @@ public class BuffManager : MonoBehaviour
     private GameObject _playerRef;
     [Tooltip("Vida que a máscara vai adicionar a vida do player")]
     public int lifeFromMask;
+    [Tooltip("Indica se o canhão está esquipado")]
+    public bool cannonIsActive;
 
     private void Start()
     {
         _playerRef = GameObject.FindGameObjectWithTag("Player");
         respawnActive = false;
+        cannonIsActive = false;
     }
+
+    #region Canhao
+    public void Cannon()
+    {
+        if (cannonIsActive)
+        {
+            //desativa o canhao
+            cannonIsActive = false;
+        }
+        else
+        {
+            //ativa o canhao
+            cannonIsActive = true;
+        }
+    }
+    #endregion
 
     #region Mascara
     public void Mask()
     {
+        //adiciona vida ao jogador
         _playerRef.GetComponent<Attributes>().health += lifeFromMask;
     }
     #endregion

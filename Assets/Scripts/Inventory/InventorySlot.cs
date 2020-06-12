@@ -27,20 +27,23 @@ public class InventorySlot : MonoBehaviour
             {
                 case "Mascara":
                     BuffManager.instance.Mask();
+                    Inventory.instance.RemoveItem(item);
                     break;
                 case "Canhao":
+                    BuffManager.instance.Cannon();
                     break;
                 case "Luva":
                     StartCoroutine(BuffManager.instance.DamageBuff(item.duration));
+                    Inventory.instance.RemoveItem(item);
                     break;
                 case "Respawn":
                     BuffManager.instance.ActivateRespawn();
+                    Inventory.instance.RemoveItem(item);
                     break;
                 default:
                     Debug.LogError("Nome inválido para item", item);
                     break;
             }
-            Inventory.instance.RemoveItem(item);
         }
     }
 }

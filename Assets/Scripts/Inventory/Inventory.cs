@@ -47,4 +47,11 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
         }
     }
+    public void ClearInventory()
+    {
+        foreach (Item i in items)
+        {
+            RemoveItem(i);
+        }
+    }
 }
