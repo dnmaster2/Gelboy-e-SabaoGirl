@@ -29,8 +29,6 @@ public class PlayerPathScript : MonoBehaviour
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("Caminho calculado, erros: " + p.error);
-
         if (!p.error)
         {
             path = p;

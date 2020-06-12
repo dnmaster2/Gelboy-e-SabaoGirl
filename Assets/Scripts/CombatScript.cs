@@ -9,12 +9,16 @@ public class CombatScript : MonoBehaviour
     PlayerPathScript pathScript;
     public string targetTag;
     public bool startCombat;
+    public float regenerationRate = 1.2f, damageCooldown = 3f;
+    bool damageTaken;
 
     private void Awake()
     {
         playerAttributes = GetComponent<Attributes>();
         pathScript = GetComponent<PlayerPathScript>();
+        StartCoroutine(RegenerationRotine());
     }
+
     public void DashTarget(GameObject newTarget, string tag)
     {
         startCombat = true;
@@ -22,9 +26,15 @@ public class CombatScript : MonoBehaviour
         targetTag = tag;
     }
 
+    public void TakeDamage(int damage)
+    {
+        playerAttributes.health -= damage;
+        StartCoroutine(RegenerationCooldown());
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(targetTag != "" && target)
+        if (targetTag != "" && target)
         {
             if (hit.collider.CompareTag(targetTag))
             {
@@ -46,24 +56,43 @@ public class CombatScript : MonoBehaviour
     {
         if (other.CompareTag("Fire"))
         {
-            playerAttributes.health -= other.GetComponent<FireScript>().damage;
+            TakeDamage(other.gameObject.GetComponent<FireScript>().damage);
+            StartCoroutine(FireDamage(other.GetComponent<FireScript>().burnTime, 1));
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        StartCoroutine(FireDamage(other.GetComponent<FireScript>().burnTime, 1));
     }
 
     IEnumerator FireDamage(float burnTime, int damage)
     {
         float i = 0;
-        while(i < burnTime)
+        while (i < burnTime)
         {
-            print("queimando!");
             playerAttributes.health -= damage;
             i += .5f;
             yield return new WaitForSeconds(.5f);
         }
+        StartCoroutine(RegenerationCooldown());
+    }
+
+    IEnumerator RegenerationCooldown()
+    {
+        print("regeneração interrompida");
+        damageTaken = true;
+        yield return new WaitForSeconds(damageCooldown);
+        damageTaken = false;
+        print("regeneração voltou");
+    }
+
+    IEnumerator RegenerationRotine()
+    {
+        if (!damageTaken)
+        {
+            print("+1 de vida");
+            if (playerAttributes.health < 100)
+            {
+                playerAttributes.health++;
+            }
+        }
+        yield return new WaitForSeconds(regenerationRate);
+        StartCoroutine(RegenerationRotine());
     }
 }

@@ -126,7 +126,7 @@ public class CoughEnemyScript : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 //explosao acertou jogador
-                hit.collider.GetComponent<Attributes>().health -= at.damage;
+                hit.collider.GetComponent<CombatScript>().TakeDamage(at.damage);
             }
         }
         //Dá play nas particulas
