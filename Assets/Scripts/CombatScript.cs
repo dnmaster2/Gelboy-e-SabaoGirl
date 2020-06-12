@@ -29,6 +29,7 @@ public class CombatScript : MonoBehaviour
     public void TakeDamage(int damage)
     {
         playerAttributes.health -= damage;
+        StopCoroutine(RegenerationCooldown());
         StartCoroutine(RegenerationCooldown());
     }
 
@@ -70,6 +71,7 @@ public class CombatScript : MonoBehaviour
             i += .5f;
             yield return new WaitForSeconds(.5f);
         }
+        StopCoroutine(RegenerationCooldown());
         StartCoroutine(RegenerationCooldown());
     }
 
@@ -85,10 +87,10 @@ public class CombatScript : MonoBehaviour
     IEnumerator RegenerationRotine()
     {
         if (!damageTaken)
-        {
-            print("+1 de vida");
+        {            
             if (playerAttributes.health < 100)
             {
+                print("+1 de vida");
                 playerAttributes.health++;
             }
         }

@@ -107,9 +107,9 @@ GameObject:
   - component: {fileID: 9164582171559729266}
   - component: {fileID: 9164582171559729265}
   - component: {fileID: 9164582171559729275}
-  - component: {fileID: 9164582171559729252}
   - component: {fileID: 9164582171559729272}
   - component: {fileID: 9164582171559729277}
+  - component: {fileID: -3469570410008773558}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -222,21 +222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 0}
   buffCombatTarget: 3
---- !u!114 &9164582171559729252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9164582171559729264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd9ec29dba9117b4684e806541220ae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetTag: 
-  startCombat: 0
 --- !u!114 &9164582171559729272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +239,7 @@ MonoBehaviour:
   points: 0
   bestCombo: 0
   actualStage: 0
+  id: 0
 --- !u!114 &9164582171559729277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +257,23 @@ MonoBehaviour:
   speedMultiplier: 4
   preparing: 0
   teleporting: 0
+--- !u!114 &-3469570410008773558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164582171559729264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9ec29dba9117b4684e806541220ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetTag: 
+  startCombat: 0
+  regenerationRate: 1.2
+  damageCooldown: 3
 --- !u!1 &9164582171857766647
 GameObject:
   m_ObjectHideFlags: 0
