@@ -9,6 +9,7 @@ TagManager:
   - Cursor
   - Walkable
   - Fire
+  - Punch
   layers:
   - Default
   - TransparentFX
