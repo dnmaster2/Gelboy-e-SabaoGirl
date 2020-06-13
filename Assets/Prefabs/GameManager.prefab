@@ -46,6 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   espaco: 4
   items: []
+  loadItem:
+  - {fileID: 11400000, guid: 7b4b5ac7756737f4b8a39dc9500964f9, type: 2}
+  - {fileID: 11400000, guid: f509e5ea3885d3549adf6389df5aaee1, type: 2}
+  - {fileID: 11400000, guid: 3b6df1e5b73b0084f9c186fd52536231, type: 2}
+  - {fileID: 11400000, guid: cfaff7cc43f21874a9c670fa6d27d1dc, type: 2}
 --- !u!114 &6234940497403143537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,3 +66,4 @@ MonoBehaviour:
   damageBuffMultiplier: 1.5
   respawnActive: 0
   lifeFromMask: 20
+  cannonIsActive: 0
