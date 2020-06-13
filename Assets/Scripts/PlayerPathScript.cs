@@ -12,7 +12,7 @@ public class PlayerPathScript : MonoBehaviour
     public float speed = 2;
     float defaultSpeed;
     public float nextWaypointDistance = 3;
-    public bool reachedEndOfPath;
+    public bool reachedEndOfPath, walking;
     private int currentWaypoint = 0;
 
     public void Awake()
@@ -47,7 +47,7 @@ public class PlayerPathScript : MonoBehaviour
         {
             return;
         }
-
+        walking = !reachedEndOfPath;
         reachedEndOfPath = false;
         float distanceToWaypoint;
         while (true)

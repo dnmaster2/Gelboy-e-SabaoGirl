@@ -9,8 +9,8 @@ public class CursorControlScript : MonoBehaviour
     public GameObject cannonShoot, cannonCursor;
     public float buffCombatTarget;
     GameObject target;
-    bool moving;
-    bool combat;
+    public bool moving;
+    public bool combat;
     PlayerPathScript pathfinding;
     CombatScript combatScript;
 
