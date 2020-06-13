@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &399375096
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781821688313157756}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e5eaa615f48f0c468da0bae847dece9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &399375097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781821688313157756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60581dc0daf1cc44a81dce22cbf56ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathScript: {fileID: 9164582171559729265}
+  combat: {fileID: -3469570410008773558}
+  anim: {fileID: 399375096}
 --- !u!1 &9164582171559729264
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +67,7 @@ Transform:
   m_GameObject: {fileID: 9164582171559729264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.94, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3949, y: 1.3949, z: 1.3949}
   m_Children:
   - {fileID: 7513841721061730927}
   m_Father: {fileID: 0}
@@ -114,6 +148,7 @@ MonoBehaviour:
   speed: 8
   nextWaypointDistance: 3
   reachedEndOfPath: 0
+  walking: 0
 --- !u!114 &9164582171559729275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +166,8 @@ MonoBehaviour:
   cannonCursor: {fileID: 7082388071522270566, guid: 51cabfa98c1874647aa776efda941b3e,
     type: 3}
   buffCombatTarget: 3
+  moving: 0
+  combat: 0
 --- !u!114 &9164582171559729272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +304,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3844d511017349459cf43d68f437ee3, type: 3}
+--- !u!1 &6781821688313157756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: e3844d511017349459cf43d68f437ee3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3259537347938435445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7513841721061730927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e3844d511017349459cf43d68f437ee3,
