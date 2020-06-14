@@ -579,14 +579,16 @@ MonoBehaviour:
   dead: 0
   onCamera: 0
   stunned: 0
+  walking: 0
+  reachedEndOfPath: 0
   maxViewpoint: 1
   minViewpoint: 0
   rotationSpeed: 1
+  deathTime: 0.9
   targetPosition: {fileID: 0}
   speed: 2
   rewardPoints: 250
   nextWaypointDistance: 3
-  reachedEndOfPath: 0
 --- !u!114 &6291041840384052383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  damage: 5
+  damage: 25
   points: 0
   bestCombo: 0
   actualStage: 0

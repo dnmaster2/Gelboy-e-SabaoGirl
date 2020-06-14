@@ -549,14 +549,16 @@ MonoBehaviour:
   dead: 0
   onCamera: 0
   stunned: 0
+  walking: 0
+  reachedEndOfPath: 0
   maxViewpoint: 1
   minViewpoint: 0
   rotationSpeed: 1
+  deathTime: 0.5
   targetPosition: {fileID: 0}
   speed: 2
   rewardPoints: 250
   nextWaypointDistance: 3
-  reachedEndOfPath: 0
 --- !u!114 &5146037789287992873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a21b45198d55e4596c45c17b358a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 5
   punchSpeed: 1
 --- !u!1 &5146037789396152207
 GameObject:
