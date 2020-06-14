@@ -6171,7 +6171,7 @@ PrefabInstance:
     - target: {fileID: -3469570410008773558, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
       propertyPath: regenerationRate
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9164582171559729264, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
@@ -6181,7 +6181,7 @@ PrefabInstance:
     - target: {fileID: 9164582171559729272, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
       propertyPath: health
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9164582171559729275, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
