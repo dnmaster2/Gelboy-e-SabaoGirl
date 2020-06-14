@@ -5,7 +5,7 @@ using UnityEngine;
 public class TeleportSkill : MonoBehaviour
 {
     public GameObject teleportCursor;
-    public Renderer rend;
+    public GameObject fbx;
     Camera cam;
     public int speedMultiplier = 4;
     public bool preparing, teleporting;
@@ -48,7 +48,7 @@ public class TeleportSkill : MonoBehaviour
     IEnumerator RunSkill()
     {
         yield return new WaitForSeconds(.3f);
-        rend.enabled = false;
+        fbx.SetActive(false);
         playerPath.NewPath(teleportDestination);
         playerPath.speed *= speedMultiplier;
         teleporting = true;
@@ -61,7 +61,7 @@ public class TeleportSkill : MonoBehaviour
             if (teleporting)
             {
                 playerPath.ResetSpeed();
-                rend.enabled = true;
+                fbx.SetActive(true);
                 teleporting = false;
                 teleportCursor.transform.position = Vector3.zero;
             }

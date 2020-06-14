@@ -8,25 +8,29 @@ public class FeverEnemyScript : MonoBehaviour
     public GameObject triggerFire;
     public Transform gun;
     public EnemyIA enemyIA;
-    Transform targetRef;
-    bool attacking;
+    public bool attacking, animAttack;
     public float rangeRadius, preparationTime, attackTime, burnTime;
+    public AnimationClip attackAnimation;
+    public AnimationClip raiseAnimation;
 
     void Awake()
     {
         enemyIA = GetComponent<EnemyIA>();
         fireParticles.Pause();
         fireParticles.Clear();
+        if(attackAnimation && raiseAnimation)
+        {
+            preparationTime = raiseAnimation.length;
+            attackTime += attackAnimation.length;
+        }
     }
 
     void Update()
     {
         if (!enemyIA.dead)
         {
-            targetRef = enemyIA.targetPosition;
             if (enemyIA.onCamera)
             {
-
                 RaycastHit[] hits = Physics.SphereCastAll(transform.position, rangeRadius, Vector3.forward);
                 foreach (RaycastHit hit in hits)
                 {
@@ -34,6 +38,7 @@ public class FeverEnemyScript : MonoBehaviour
                     {
                         if (!attacking)
                         {
+                            print("estou rodando a corotina");
                             StartCoroutine(FlameThrowerRoutine());
                         }
                     }
@@ -45,13 +50,21 @@ public class FeverEnemyScript : MonoBehaviour
     IEnumerator FlameThrowerRoutine()
     {
         attacking = true;
-        yield return new WaitForSeconds(preparationTime);
+        print("preparando");
+        StartCoroutine(enemyIA.Stun(attackTime + preparationTime));
+        animAttack = true;
+        yield return new WaitForSeconds(preparationTime + 1f);
+        print("ataque");
         fireParticles.Play();
         triggerFire.SetActive(true);
-        yield return new WaitForSeconds(attackTime);
+        yield return new WaitForSeconds(attackTime - 1f);
+        print("fim do ataque");
         fireParticles.Pause();
         fireParticles.Clear();
         triggerFire.SetActive(false);
+        animAttack = false;
+        yield return new WaitForSeconds(2f);
+        print("reset");
         attacking = false;
     }
 

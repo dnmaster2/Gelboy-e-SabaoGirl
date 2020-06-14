@@ -5,10 +5,11 @@ using Pathfinding;
 
 public class EnemyIA : MonoBehaviour
 {
-    public bool dead, onCamera, stunned;
+    public bool dead, onCamera, stunned,walking,reachedEndOfPath;
     public int maxViewpoint = 1;
     public int minViewpoint = 0;
     public float rotationSpeed;
+    public float deathTime = 2f;
 
     Seeker seeker;
     Camera cam;
@@ -21,7 +22,6 @@ public class EnemyIA : MonoBehaviour
     public int rewardPoints;
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
-    public bool reachedEndOfPath;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,10 +48,11 @@ public class EnemyIA : MonoBehaviour
         nextWaypointDistance = 3;
     }
 
-    IEnumerator Stun(float stunTime)
+    public IEnumerator Stun(float stunTime)
     {
         stunned = true;
         path = null;
+        walking = false;
         yield return new WaitForSeconds(stunTime);
         stunned = false;
     }
@@ -66,6 +67,7 @@ public class EnemyIA : MonoBehaviour
             Destroy(gameObject, 2f);
             dead = true;
         }
+
         Vector3 positionInViewport = cam.WorldToViewportPoint(transform.position);
         onCamera = positionInViewport.x > minViewpoint && positionInViewport.x < maxViewpoint
             && positionInViewport.y > minViewpoint && positionInViewport.y < maxViewpoint;
@@ -93,7 +95,7 @@ public class EnemyIA : MonoBehaviour
             {
                 return;
             }
-
+            walking = !reachedEndOfPath;
             reachedEndOfPath = false;
             float distanceToWaypoint;
             while (true)

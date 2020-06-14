@@ -63,7 +63,6 @@ public class CombatScript : MonoBehaviour
 
         if (other.CompareTag("Punch"))
         {
-            print("chamandoPunch");
             other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StartPunch(this);
         }
     }
@@ -73,7 +72,6 @@ public class CombatScript : MonoBehaviour
     {
         if (other.CompareTag("Punch"))
         {
-            print("saindoPunch");
             other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StopPunch();
         }
     }

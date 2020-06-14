@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportCursor: {fileID: 0}
-  rend: {fileID: 0}
+  fbx: {fileID: 6781821688313157756}
   speedMultiplier: 4
   preparing: 0
   teleporting: 0
