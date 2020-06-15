@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class ChoosePlayerScript : MonoBehaviour
 {
+    public GameObject _playerInterface;
+
     public void ChooseGelman()
     {
         PlayerPrefs.SetInt("player", 1);
@@ -16,5 +18,10 @@ public class ChoosePlayerScript : MonoBehaviour
     public void GoToMapScene()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void OpenClosePlayerInterface()
+    {
+        _playerInterface.SetActive(!_playerInterface.activeInHierarchy);
     }
 }
