@@ -10,6 +10,7 @@ TagManager:
   - Walkable
   - Fire
   - Punch
+  - MapSphere
   layers:
   - Default
   - TransparentFX
