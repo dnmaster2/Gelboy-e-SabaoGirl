@@ -79,44 +79,26 @@ public class CursorControlScript : MonoBehaviour
         //Primeira parte: Toque/clique segurado
         if (Input.GetMouseButton(0))
         {
-            //Se ele ainda não estiver querendo se mover
-            if (!moving)
-            {               
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        //Se for clicado no player, reconhecer como uma ação de movimento
-                        moving = true;
-                        cursor.transform.position = hit.point;
-                    }
-                }
-            }
-            //Se o toque for no jogador e persistir
-            if (moving)
+            //Manter track
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                //Manter track
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (hit.collider.CompareTag("Walkable"))
                 {
-                    if (hit.collider.CompareTag("Walkable"))
-                    {
-                        //Atualiza a bool de combate como falsa cada frame, em caso de desistencia de um ataque
-                        cursor.transform.position = hit.point;
-                        combat = false;
-                    }
-                    if (hit.collider.CompareTag("Enemy"))
-                    {
-                        //Se for num inimigo, trocar a booleana para combat, isso vai ser importante no MouseUp
-                        combat = true;
-                        cursor.transform.position = hit.point;
-                        //Salva uma referencia do target, usado no CombatScript
-                        target = hit.collider.gameObject;
-                    }
+                    //Atualiza a bool de combate como falsa cada frame, em caso de desistencia de um ataque
+                    cursor.transform.position = hit.point;
+                    combat = false;
                 }
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    //Se for num inimigo, trocar a booleana para combat, isso vai ser importante no MouseUp
+                    combat = true;
+                    cursor.transform.position = hit.point;
+                    //Salva uma referencia do target, usado no CombatScript
+                    target = hit.collider.gameObject;
+                }
+
             }
         }
 
@@ -124,15 +106,14 @@ public class CursorControlScript : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             //Basicamente checa qual das booleanas de controle estão ativas e desativadas
-            if (!combat && moving)
+            if (!combat)
             {
                 //Movimento
                 pathfinding.NewPath(cursor.transform.position);
                 moving = false;
                 return;
             }
-
-            if (combat)
+            else
             {
                 //Apenas pra evitar bug
                 if (target)
@@ -149,5 +130,6 @@ public class CursorControlScript : MonoBehaviour
             }
         }
     }
+    #endregion
 }
-#endregion
+
