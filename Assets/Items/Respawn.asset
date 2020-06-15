@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Respawn
   icone: {fileID: 21300000, guid: f1c84af9b864eb945b41e0cda0bfc800, type: 3}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: -927199367670048503, guid: 67d476ec41dcaaf4abba96c8c81b5e22,
+    type: 3}
   duration: 0

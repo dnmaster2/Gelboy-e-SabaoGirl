@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class CursorControlScript : MonoBehaviour
 {
+    #region Custom Script Variables
+    PlayerPathScript pathfinding;
+    CombatScript combatScript;
+    #endregion
+    #region Unity Objects Variables
     Camera cam;
+    [Tooltip("Referencia do cursor de movimento")]
     public GameObject cursor;
+    [Tooltip("referencias do canhão")]
     public GameObject cannonShoot, cannonCursor;
+    #endregion
+    #region Public Variables
+    [Tooltip("Distancia do fim do dash quando o combate é selecionado")]
     public float buffCombatTarget;
     GameObject target;
     public bool moving;
     public bool combat;
-    PlayerPathScript pathfinding;
-    CombatScript combatScript;
+    #endregion
 
+    #region MonoBehaviour Callbacks
     private void Awake()
     {
+        //Load
         cam = Camera.main;
         pathfinding = GetComponent<PlayerPathScript>();
         combatScript = GetComponent<CombatScript>();
@@ -23,11 +34,13 @@ public class CursorControlScript : MonoBehaviour
 
     private void Update()
     {
+        //Associa o cursor com a booleana de canhão ativo
         cannonCursor.SetActive(BuffManager.instance.cannonIsActive);
         if (Input.GetMouseButtonDown(0))
         {
             if (BuffManager.instance.cannonIsActive)
             {
+                //Pega o clique e gira na direção dele, instancia uma bola de canhão
                 var cannonLookPos = cannonCursor.transform.position - transform.position;
                 cannonLookPos.y = 0;
                 var cannonRotation = Quaternion.LookRotation(cannonLookPos);
@@ -37,67 +50,83 @@ public class CursorControlScript : MonoBehaviour
 
         if (BuffManager.instance.cannonIsActive)
         {
+            //Controle do cursor
             cannonCursor.SetActive(true);
+            //Raycast definindo a posição do cursor
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 cannonCursor.transform.position = hit.point;
             }
-
+            //Girar o player na direção do cursor
             var cannonLookPos = cannonCursor.transform.position - transform.position;
             cannonLookPos.y = 0;
             var cannonRotation = Quaternion.LookRotation(cannonLookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, cannonRotation, Time.deltaTime * 10);
+            //IMPORTANTE caso o player tenha ativado o canhão, o resto deve parar
             return;
         }
 
+        //Rotação em Y do player.
         var lookPos = cursor.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
-
+        //Associação do cursor com a bool de moving
         cursor.SetActive(moving);
+
+        //Primeira parte: Toque/clique segurado
         if (Input.GetMouseButton(0))
         {
+            //Se ele ainda não estiver querendo se mover
             if (!moving)
-            {
+            {               
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
+                        //Se for clicado no player, reconhecer como uma ação de movimento
                         moving = true;
                         cursor.transform.position = hit.point;
                     }
                 }
             }
+            //Se o toque for no jogador e persistir
             if (moving)
             {
+                //Manter track
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.collider.CompareTag("Walkable"))
                     {
+                        //Atualiza a bool de combate como falsa cada frame, em caso de desistencia de um ataque
                         cursor.transform.position = hit.point;
                         combat = false;
                     }
                     if (hit.collider.CompareTag("Enemy"))
                     {
+                        //Se for num inimigo, trocar a booleana para combat, isso vai ser importante no MouseUp
                         combat = true;
                         cursor.transform.position = hit.point;
+                        //Salva uma referencia do target, usado no CombatScript
                         target = hit.collider.gameObject;
                     }
                 }
             }
         }
 
+        //Segunda parte: Soltou o toque/clique
         if (Input.GetMouseButtonUp(0))
         {
+            //Basicamente checa qual das booleanas de controle estão ativas e desativadas
             if (!combat && moving)
             {
+                //Movimento
                 pathfinding.NewPath(cursor.transform.position);
                 moving = false;
                 return;
@@ -105,10 +134,14 @@ public class CursorControlScript : MonoBehaviour
 
             if (combat)
             {
+                //Apenas pra evitar bug
                 if (target)
                 {
+                    //Ativa o target no script de combate, validando a próxima colisão como um ataque
                     combatScript.DashTarget(target, target.tag);
+                    //Define o caminho para o inimigo + buff para que o player não pare na frente do inimigo
                     pathfinding.NewPath(target.transform.position + transform.forward * buffCombatTarget);
+                    //Velocidade aumenta
                     pathfinding.speed *= 4;
                     moving = false;
                 }
@@ -117,3 +150,4 @@ public class CursorControlScript : MonoBehaviour
         }
     }
 }
+#endregion

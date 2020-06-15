@@ -6,7 +6,6 @@ public class FeverEnemyScript : MonoBehaviour
 {
     public ParticleSystem fireParticles;
     public GameObject triggerFire;
-    public Transform gun;
     public EnemyIA enemyIA;
     public bool attacking, animAttack;
     public float rangeRadius, preparationTime, attackTime, burnTime;

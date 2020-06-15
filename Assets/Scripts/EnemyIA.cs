@@ -6,9 +6,13 @@ using Pathfinding;
 public class EnemyIA : MonoBehaviour
 {
     public bool dead, onCamera, stunned,walking,reachedEndOfPath;
+    [Tooltip("Ponto maximo da viewport que o inimigo pode ativar, default: 1")]
     public int maxViewpoint = 1;
+    [Tooltip("Ponto minimo da viewport que o inimigo pode ativar, default: 0")]
     public int minViewpoint = 0;
+    [Tooltip("Velocidade do inimigo para ajustar sua rotação com a posição do player")]
     public float rotationSpeed;
+    [Tooltip("Tempo para destruir o inimigo")]
     public float deathTime = 2f;
 
     Seeker seeker;
@@ -16,10 +20,14 @@ public class EnemyIA : MonoBehaviour
     CharacterController controller;
     Attributes attributes;
     public Path path;
+    [Tooltip("Transform para seguir")]
     public Transform targetPosition;
 
+    [Tooltip("Velocidade de locomoção")]
     public float speed = 2;
+    [Tooltip("Pontos de recompensa")]
     public int rewardPoints;
+    [Tooltip("distancia do próximo waypoint, do path gerado pelo A*")]
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
 
