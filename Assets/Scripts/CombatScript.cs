@@ -15,6 +15,7 @@ public class CombatScript : MonoBehaviour
     public string targetTag;
     [Tooltip("booleana de controle para o combate, também afeta animação")]
     public bool startCombat;
+    public bool runningCombat;
     [Tooltip("Tempo entre as somas de +1 da regeneração")]
     public float regenerationRate = 1.2f;
     [Tooltip("Tempo sem regenerar depois de um dano")]
@@ -36,28 +37,25 @@ public class CombatScript : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        //Check de colisão não intencional com outras entidades
-        if (targetTag != "" && target)
+
+        //Checa se o target é o chamado
+        if (hit.collider.CompareTag(targetTag))
         {
-            //Checa se o target é o chamado
-            if (hit.collider.CompareTag(targetTag))
+            if (startCombat)
             {
-                //Checa se o combate foi iniciado
-                if (startCombat)
+                //Da dano
+                hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
+                //Caso seja o Tosse, chama o stun
+                if (hit.collider.GetComponent<Attributes>().id == 4)
                 {
-                    //Da dano
-                    hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
-                    //Caso seja o Tosse, chama o stun
-                    if (hit.collider.GetComponent<Attributes>().id == 4)
-                    {
-                        hit.collider.GetComponent<CoughEnemyScript>().StopExplosion(3f);
-                    }
-                    //Reseta a velocidade para o padrão e desliga a bool de controle
-                    pathScript.ResetSpeed();
-                    startCombat = false;
+                    hit.collider.GetComponent<CoughEnemyScript>().StopExplosion(3f);
                 }
+                //Reseta a velocidade para o padrão e desliga a bool de controle
+                pathScript.ResetSpeed();
+                startCombat = false;
             }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -87,11 +85,10 @@ public class CombatScript : MonoBehaviour
     #endregion
 
     #region Custom Callbacks
-    public void DashTarget(GameObject newTarget, string tag)
+    public void DashTarget(string tag)
     {
         //Cadastra um novo alvo para iniciar o dash, validando a próxima colisão com ele
         startCombat = true;
-        target = newTarget;
         targetTag = tag;
     }
 
