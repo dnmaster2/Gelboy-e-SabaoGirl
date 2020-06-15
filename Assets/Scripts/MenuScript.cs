@@ -25,9 +25,4 @@ public class MenuScript : MonoBehaviour
             SceneManager.LoadScene(1);
         }
     }
-
-    public void ResetPlayer()
-    {
-        PlayerPrefs.DeleteKey("player");
-    }
 }
