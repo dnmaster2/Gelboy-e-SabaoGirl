@@ -1089,12 +1089,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1186725476}
   playerAttributes: {fileID: 1186725484}
-  paddingBetweenButtons: 350
   comboCooldown: 5
   nextCooldownDifference: 1
   timeToEndStage: 300
   multiplierCombo: 1
-  pontos: 0
   pontosTXT: {fileID: 635656362}
   tempo: {fileID: 995116493}
   combo: {fileID: 492904168}
@@ -3434,6 +3432,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1186725483}
+    - target: {fileID: 3272442486660073166, guid: 6e9492b8ec6fdc840810f932b0fe71be,
+        type: 3}
+      propertyPath: offset.x
+      value: 7.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9492b8ec6fdc840810f932b0fe71be, type: 3}
 --- !u!1001 &4626594972777348308
@@ -4170,6 +4173,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3469570410008773558, guid: 5c81af89becbda04aa605428d1ec5ea9,
+        type: 3}
+      propertyPath: targetTag
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 9164582171559729264, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
       propertyPath: m_Name
