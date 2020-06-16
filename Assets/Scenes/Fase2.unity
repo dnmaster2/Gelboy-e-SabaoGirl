@@ -1320,12 +1320,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1186725476}
   playerAttributes: {fileID: 1186725484}
-  paddingBetweenButtons: 350
   comboCooldown: 5
   nextCooldownDifference: 1
   timeToEndStage: 300
   multiplierCombo: 1
-  pontos: 0
   pontosTXT: {fileID: 635656362}
   tempo: {fileID: 995116493}
   combo: {fileID: 492904168}
@@ -1440,6 +1438,28 @@ RectTransform:
   m_AnchoredPosition: {x: 468, y: 338}
   m_SizeDelta: {x: 415.9632, y: 47.321503}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &498310526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1108483876567952249, guid: 6d4a7558c8d98084b90332dd8940d9c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2124591845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &498310530
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498310526}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bc406e0fdef2da7488afa76595f800fc, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bc406e0fdef2da7488afa76595f800fc, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &615115827
 GameObject:
   m_ObjectHideFlags: 0
@@ -4736,17 +4756,17 @@ PrefabInstance:
     - target: {fileID: 1108483876567952251, guid: 6d4a7558c8d98084b90332dd8940d9c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.1
+      value: 16.64
       objectReference: {fileID: 0}
     - target: {fileID: 1108483876567952251, guid: 6d4a7558c8d98084b90332dd8940d9c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.72
+      value: -2.04
       objectReference: {fileID: 0}
     - target: {fileID: 1108483876567952251, guid: 6d4a7558c8d98084b90332dd8940d9c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.91
+      value: -1.49
       objectReference: {fileID: 0}
     - target: {fileID: 1108483876567952251, guid: 6d4a7558c8d98084b90332dd8940d9c7,
         type: 3}
@@ -4792,7 +4812,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemType
       value: 
-      objectReference: {fileID: 11400000, guid: cfaff7cc43f21874a9c670fa6d27d1dc,
+      objectReference: {fileID: 11400000, guid: f509e5ea3885d3549adf6389df5aaee1,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4a7558c8d98084b90332dd8940d9c7, type: 3}
