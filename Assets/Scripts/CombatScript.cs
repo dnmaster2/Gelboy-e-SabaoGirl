@@ -98,10 +98,23 @@ public class CombatScript : MonoBehaviour
         playerAttributes.health -= d;
         if (playerAttributes.health <= 0 && !dead)
         {
-            Debug.Log("Player is dead");
-            FindObjectOfType<GameManager>().PlayerDeath(playerAttributes.points);
-            dead = true;
+            if (BuffManager.instance.respawnActive)
+            {
+                Respawn();
+            }
+            else
+            {
+                Debug.Log("Player is dead");
+                FindObjectOfType<GameManager>().PlayerDeath(playerAttributes.points);
+                dead = true;
+            }
         }
+    }
+
+    public void Respawn()
+    {
+        playerAttributes.health = 100;
+        BuffManager.instance.Respawn();
     }
 
     public void TakeDamage(int damage)

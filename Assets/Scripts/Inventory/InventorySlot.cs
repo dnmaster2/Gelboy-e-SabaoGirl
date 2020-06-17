@@ -39,7 +39,7 @@ public class InventorySlot : MonoBehaviour
                     //Inventory.instance.RemoveItem(item);
                     break;
                 case "Respawn":
-                    BuffManager.instance.ActivateRespawn();
+                    BuffManager.instance.ActivateRespawn(item.itemPrefab);
                     GetComponentInChildren<Button>().interactable = false;
                     //Inventory.instance.RemoveItem(item);
                     break;

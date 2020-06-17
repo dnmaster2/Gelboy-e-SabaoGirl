@@ -23,7 +23,8 @@ public class BuffManager : MonoBehaviour
     [Tooltip("Controle para respawnar jogador quando morrer")]
     public bool respawnActive;
     private Vector3 respawnPosition;
-    private GameObject _playerRef;
+    private Transform _playerRef;
+    private GameObject respawnGO;
     [Tooltip("Vida que a máscara vai adicionar a vida do player")]
     public int lifeFromMask;
     [Tooltip("Indica se o canhão está esquipado")]
@@ -31,7 +32,7 @@ public class BuffManager : MonoBehaviour
 
     private void Start()
     {
-        _playerRef = GameObject.FindGameObjectWithTag("Player");
+        _playerRef = GameObject.FindGameObjectWithTag("Player").transform;
         respawnActive = false;
         cannonIsActive = false;
     }
@@ -62,17 +63,20 @@ public class BuffManager : MonoBehaviour
 
     #region Respawn
 
-    public void ActivateRespawn()
+    public void ActivateRespawn(GameObject itemRespawn)
     {
-        respawnPosition = _playerRef.transform.position;
+        respawnPosition = _playerRef.position;
+        Physics.Raycast(_playerRef.position, Vector3.down, out RaycastHit hit, 25f);
+        Instantiate(itemRespawn, hit.point, Quaternion.identity);
         //instancia objeto representando lugar de spawn
         respawnActive = true;
     }
 
     public void Respawn()
     {
+        Destroy(respawnGO);
         //ativa particula para respawn
-        _playerRef.transform.position = respawnPosition;
+        _playerRef.position = respawnPosition;
     }
 
     #endregion
