@@ -34,11 +34,32 @@ public class ItemScript : MonoBehaviour
         //checa se o que colidiu é um jogador para adicionar ao inventario
         if (other.CompareTag("Player"))
         {
-            Inventory.instance.AddItem(itemType);
-            GameObject p = Instantiate(popup, GameObject.FindGameObjectWithTag("Canvas").transform);
-            p.GetComponent<ItemPopup>().SetupPopup(itemType);
-            Destroy(gameObject);
+            if (CheckIfPlayerHasItem(itemType))
+            {
+                GameObject p = Instantiate(popup, GameObject.FindGameObjectWithTag("Canvas").transform);
+                p.GetComponent<ItemPopup>().SetupPopup(itemType);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Inventory.instance.AddItem(itemType);
+                GameObject p = Instantiate(popup, GameObject.FindGameObjectWithTag("Canvas").transform);
+                p.GetComponent<ItemPopup>().SetupPopup(itemType);
+                Destroy(gameObject);
+            }
         }
+    }
+
+    bool CheckIfPlayerHasItem(Item pickedUpItem)
+    {
+        foreach (Item invItem in Inventory.instance.items)
+        {
+            if (invItem.name == pickedUpItem.name)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion
