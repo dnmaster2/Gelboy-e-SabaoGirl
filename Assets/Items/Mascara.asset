@@ -17,3 +17,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 6200401100308920410, guid: fb05cfc52ca4f784092bab28e4f07425,
     type: 3}
   duration: 0
+  description: Cura
+  frase: Usa mascara

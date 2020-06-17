@@ -38,6 +38,8 @@ public class EnemyIA : MonoBehaviour
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
         attributes = GetComponent<Attributes>();
+        GameManager.enemies++;
+        Debug.Log(GameManager.enemies);
     }
 
     public void OnPathComplete(Path p)
@@ -73,6 +75,12 @@ public class EnemyIA : MonoBehaviour
             Destroy(controller);
             GameObject.Find("Canvas").GetComponent<UIControler>().HitCombo(rewardPoints);
             Destroy(gameObject, 2f);
+            GameManager.enemies--;
+            Debug.Log(GameManager.enemies);
+            if (GameManager.enemies <= 0)
+            {
+                FindObjectOfType<GameManager>().EndLevel(GameObject.FindGameObjectWithTag("Player").GetComponent<Attributes>().points);
+            }
             dead = true;
         }
 

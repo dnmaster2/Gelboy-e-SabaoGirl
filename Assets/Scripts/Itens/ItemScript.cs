@@ -9,6 +9,8 @@ public class ItemScript : MonoBehaviour
 
     [Tooltip("Que item é esse? apenas arraste o objeto item para cá!")]
     public Item itemType;
+    [Tooltip("Popup explicativo do item")]
+    public GameObject popup;
 
     #endregion
 
@@ -33,6 +35,8 @@ public class ItemScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.instance.AddItem(itemType);
+            GameObject p = Instantiate(popup, GameObject.FindGameObjectWithTag("Canvas").transform);
+            p.GetComponent<ItemPopup>().SetupPopup(itemType);
             Destroy(gameObject);
         }
     }
