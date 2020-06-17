@@ -67,8 +67,8 @@ public class BuffManager : MonoBehaviour
     {
         respawnPosition = _playerRef.position;
         Physics.Raycast(_playerRef.position, Vector3.down, out RaycastHit hit, 25f);
-        Instantiate(itemRespawn, hit.point, Quaternion.identity);
         //instancia objeto representando lugar de spawn
+        respawnGO = Instantiate(itemRespawn, hit.point, Quaternion.identity);
         respawnActive = true;
     }
 

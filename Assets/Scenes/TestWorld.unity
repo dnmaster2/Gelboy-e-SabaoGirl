@@ -3387,6 +3387,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPlayerDeath
       objectReference: {fileID: 0}
+    - target: {fileID: 4166209968746912612, guid: 7a0884b73ae1e0241a1ce3f801fe1180,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4166209968746912613, guid: 7a0884b73ae1e0241a1ce3f801fe1180,
         type: 3}
       propertyPath: m_LocalPosition.x
