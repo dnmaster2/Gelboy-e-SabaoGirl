@@ -17,3 +17,5 @@ MonoBehaviour:
   itemPrefab: {fileID: -927199367670048503, guid: 67d476ec41dcaaf4abba96c8c81b5e22,
     type: 3}
   duration: 0
+  description: Reviver
+  frase: Fica em casa

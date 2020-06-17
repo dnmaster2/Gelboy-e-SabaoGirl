@@ -17,3 +17,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 5585258550537740008, guid: b7602e51048efa04cb265d1b7bdd3199,
     type: 3}
   duration: 5
+  description: Da o dobro de dano em um tempo
+  frase: protecao
