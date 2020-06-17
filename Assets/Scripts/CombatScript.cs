@@ -23,6 +23,7 @@ public class CombatScript : MonoBehaviour
     #endregion
     #region Private Variables
     bool damageTaken;
+    bool dead = false;
     #endregion
     #region MonoBehaviour Callbacks
     private void Awake()
@@ -92,10 +93,21 @@ public class CombatScript : MonoBehaviour
         targetTag = tag;
     }
 
+    public void DamagePlayer(int d)
+    {
+        playerAttributes.health -= d;
+        if (playerAttributes.health <= 0 && !dead)
+        {
+            Debug.Log("Player is dead");
+            FindObjectOfType<GameManager>().PlayerDeath(playerAttributes.points);
+            dead = true;
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         //Tira vida baseado no dano recebido na função
-        playerAttributes.health -= damage;
+        DamagePlayer(damage);
         //Reinicia a Corotina
         StopCoroutine(RegenerationCooldown());
         StartCoroutine(RegenerationCooldown());
@@ -109,7 +121,7 @@ public class CombatScript : MonoBehaviour
         float i = 0;
         while (i < burnTime)
         {
-            playerAttributes.health -= damage;
+            DamagePlayer(damage);
             i += .5f;
             yield return new WaitForSeconds(.5f);
         }

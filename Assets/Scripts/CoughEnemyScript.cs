@@ -132,8 +132,10 @@ public class CoughEnemyScript : MonoBehaviour
         //Dá play nas particulas
         explosionParticle.Play();
         mr.enabled = false;
-        //Seta vida pra 0
-        at.health = 0;
+        //Destroi ele sem dar pontos
+        Destroy(GetComponent<Collider>());
+        Destroy(GetComponent<CharacterController>());
+        Destroy(gameObject, 2f);
     }
 
     IEnumerator Stun(float t)

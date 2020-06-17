@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 241120536644150524}
   - component: {fileID: 1816313005144983803}
   - component: {fileID: 6234940497403143537}
+  - component: {fileID: -4828462476804634048}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -67,3 +68,19 @@ MonoBehaviour:
   respawnActive: 0
   lifeFromMask: 20
   cannonIsActive: 0
+--- !u!114 &-4828462476804634048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422087624337688564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6053d783882b84d46b3e6ff18fc4dae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endOfLevelPopup: {fileID: 6325549400768349462, guid: 1cc6329014e3d934e88c314e974974e6,
+    type: 3}
+  playerDeathPopup: {fileID: 4166209968746912612, guid: 7a0884b73ae1e0241a1ce3f801fe1180,
+    type: 3}
