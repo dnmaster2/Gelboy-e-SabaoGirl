@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 490260041}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1864,7 +1864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &716175672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3061,7 +3061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1283515497
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4237,7 +4237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1826873210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5444,7 +5444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2147358862
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5793,7 +5793,7 @@ PrefabInstance:
     - target: {fileID: 9164582171559729272, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
       propertyPath: health
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9164582171559729272, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
