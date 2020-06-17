@@ -51,6 +51,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        LoadInventory();
+    }
+
     public void SaveInvantory()
     {
         //Deleta inventario salvado anteriormente

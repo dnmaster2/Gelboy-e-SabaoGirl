@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("map", level);
         }
+        Inventory.instance.SaveInvantory();
         GameObject p = Instantiate(endOfLevelPopup, GameObject.FindGameObjectWithTag("Canvas").transform);
         p.GetComponent<EndGamePopup>().SetupPopup(points, level);
     }
