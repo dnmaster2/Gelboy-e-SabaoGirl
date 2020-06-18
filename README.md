@@ -15,7 +15,8 @@ Um jogo beat em up, com ondas de inimigos que vão ficando mais difíceis e um s
 ## Softwares Utilizados :gear:
 - Unity 2019.3.15f para compilação do game final
 - Visual Studio para edição de scripts
-- Blender para criação de modelos 3D
+- Blender/Maya para criação de modelos 3D e algumas texturas em forma de pintura digital
+- Adobe Photoshop e Substance para criação de arte 2D e edição de algumas texturas
 - REAPER para a criação da trilha sonora original
 - Audacity para edição dos samples
 - Documentos Google para a documentação
