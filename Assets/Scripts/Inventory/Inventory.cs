@@ -27,6 +27,9 @@ public class Inventory : MonoBehaviour
     private int usedInventory;
     public List<Item> loadItem = new List<Item>();
 
+    public AudioClip adButtonClick;
+    public AudioSource asInventory;
+
     public bool AddItem (Item item)
     {
         if(items.Count >= espaco)
@@ -54,6 +57,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         LoadInventory();
+        asInventory = GetComponent<AudioSource>();
     }
 
     public void SaveInvantory()

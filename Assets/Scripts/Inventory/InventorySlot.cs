@@ -48,5 +48,9 @@ public class InventorySlot : MonoBehaviour
                     break;
             }
         }
+        Inventory.instance.asInventory.pitch = Random.Range(0.85f, 1.15f);
+        Inventory.instance.asInventory.volume = .15f;
+        Inventory.instance.asInventory.clip = Inventory.instance.adButtonClick;
+        Inventory.instance.asInventory.Play();
     }
 }
