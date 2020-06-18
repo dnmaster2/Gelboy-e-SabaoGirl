@@ -30,6 +30,10 @@ public class AreaDamageSkill : MonoBehaviour
     {
         //Função publica para chamar a corotina de ataque
         StartCoroutine(AreaDamage());
+        Inventory.instance.asInventory.pitch = Random.Range(0.85f, 1.15f);
+        Inventory.instance.asInventory.volume = .15f;
+        Inventory.instance.asInventory.clip = Inventory.instance.adButtonClick;
+        Inventory.instance.asInventory.Play();
     }
 
     IEnumerator AreaDamage()

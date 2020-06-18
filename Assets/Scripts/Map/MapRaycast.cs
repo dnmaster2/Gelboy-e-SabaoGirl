@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapRaycast : MonoBehaviour
 {
     Camera cam;
+    public ChoosePlayerScript cps;
 
     private void Awake()
     {
@@ -12,7 +13,7 @@ public class MapRaycast : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0) && !cps._playerInterface.activeInHierarchy)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

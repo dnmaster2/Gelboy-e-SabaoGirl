@@ -27,6 +27,7 @@ public class PlayerDeathPopup : MonoBehaviour
 
     public void Menu()
     {
+        PlaySound();
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
         Destroy(gameObject);
@@ -34,6 +35,7 @@ public class PlayerDeathPopup : MonoBehaviour
 
     public void Map()
     {
+        PlaySound();
         Time.timeScale = 1;
         SceneManager.LoadScene(2);
         Destroy(gameObject);
@@ -41,8 +43,17 @@ public class PlayerDeathPopup : MonoBehaviour
 
     public void Retry()
     {
+        PlaySound();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Destroy(gameObject);
+    }
+
+    void PlaySound()
+    {
+        Inventory.instance.asInventory.pitch = Random.Range(0.85f, 1.15f);
+        Inventory.instance.asInventory.volume = .15f;
+        Inventory.instance.asInventory.clip = Inventory.instance.adButtonClick;
+        Inventory.instance.asInventory.Play();
     }
 }
