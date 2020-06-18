@@ -118,8 +118,11 @@ public class CursorControlScript : MonoBehaviour
                 //Apenas pra evitar bug
                 if (target)
                 {
-                    //Ativa o target no script de combate, validando a próxima colisão como um ataque
-                    combatScript.DashTarget(target.tag);
+                    //Chama a função validando a proxima colisão com a bool StartCombat
+                    if (!combatScript.startCombat)
+                    {
+                        combatScript.startCombat = true;
+                    }
                     //Define o caminho para o inimigo + buff para que o player não pare na frente do inimigo
                     pathfinding.NewPath(target.transform.position + transform.forward * buffCombatTarget);
 

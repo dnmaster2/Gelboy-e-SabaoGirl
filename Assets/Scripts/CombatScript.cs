@@ -9,10 +9,6 @@ public class CombatScript : MonoBehaviour
     PlayerPathScript pathScript;
     #endregion
     #region Public Variables
-    [Tooltip("Alvo do ataque")]
-    public GameObject target;
-    [Tooltip("tag do alvo")]
-    public string targetTag;
     [Tooltip("booleana de controle para o combate, também afeta animação")]
     public bool startCombat;
     public bool runningCombat;
@@ -40,7 +36,7 @@ public class CombatScript : MonoBehaviour
     {
 
         //Checa se o target é o chamado
-        if (hit.collider.CompareTag(targetTag))
+        if (hit.collider.CompareTag("Enemy"))
         {
             if (startCombat)
             {
@@ -86,12 +82,6 @@ public class CombatScript : MonoBehaviour
     #endregion
 
     #region Custom Callbacks
-    public void DashTarget(string tag)
-    {
-        //Cadastra um novo alvo para iniciar o dash, validando a próxima colisão com ele
-        startCombat = true;
-        targetTag = tag;
-    }
 
     public void DamagePlayer(int d)
     {
