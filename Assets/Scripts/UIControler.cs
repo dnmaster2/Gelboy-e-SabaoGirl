@@ -35,6 +35,8 @@ public class UIControler : MonoBehaviour
     public Text combo;
     [Tooltip("Texto para exibir saude em numero")]
     public Text healthTXT;
+    [Tooltip("Texto com inimigos restantes")]
+    public Text enemyCounterTXT;
     [Tooltip("Botão de habilidade, inciado no awake depois de buscar o script de habilidade do player")]
     public Button skillButton;
     [Tooltip("Componente Slider da barra de vida")]
@@ -77,6 +79,7 @@ public class UIControler : MonoBehaviour
         tempo.text = (timeToEndStage - Mathf.RoundToInt(Time.time)).ToString();
         combo.text = multiplierCombo.ToString() + "X";
         healthTXT.text = playerAttributes.health.ToString();
+        enemyCounterTXT.text = GameManager.enemies.ToString();
         //Define que o valor da barra é igual a vida do player
         healthBar.value = playerAttributes.health;
         //Usa Evaluate para mudar a cor da barra dinamicamente

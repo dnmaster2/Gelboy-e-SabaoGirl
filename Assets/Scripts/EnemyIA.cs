@@ -5,7 +5,8 @@ using Pathfinding;
 
 public class EnemyIA : MonoBehaviour
 {
-    public bool dead, onCamera, stunned,walking,reachedEndOfPath;
+    public static int activeIA;
+    public bool dead, onCamera, stunned, walking, reachedEndOfPath;
     [Tooltip("Ponto maximo da viewport que o inimigo pode ativar, default: 1")]
     public int maxViewpoint = 1;
     [Tooltip("Ponto minimo da viewport que o inimigo pode ativar, default: 0")]
@@ -19,6 +20,7 @@ public class EnemyIA : MonoBehaviour
     Camera cam;
     CharacterController controller;
     Attributes attributes;
+    IAManagement ia;
     public Path path;
     [Tooltip("Transform para seguir")]
     public Transform targetPosition;
@@ -38,6 +40,7 @@ public class EnemyIA : MonoBehaviour
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
         attributes = GetComponent<Attributes>();
+        ia = GameObject.Find("IAmanager").GetComponent<IAManagement>();
         GameManager.enemies++;
         Debug.Log(GameManager.enemies);
     }
@@ -77,6 +80,7 @@ public class EnemyIA : MonoBehaviour
             Destroy(gameObject, 2f);
             GameManager.enemies--;
             Debug.Log(GameManager.enemies);
+            ia.RemoveFromCamera(gameObject);
             if (GameManager.enemies <= 0)
             {
                 FindObjectOfType<GameManager>().EndLevel(GameObject.FindGameObjectWithTag("Player").GetComponent<Attributes>().points);
@@ -92,7 +96,7 @@ public class EnemyIA : MonoBehaviour
         {
             targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
             seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
-
+            ia.OnCameraList(gameObject);
             var lookPos = targetPosition.position - transform.position;
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
@@ -102,9 +106,10 @@ public class EnemyIA : MonoBehaviour
         {
             targetPosition = null;
             path = null;
+            ia.RemoveFromCamera(gameObject);
         }
 
-        if (!dead && !stunned && onCamera)
+        if (!dead && !stunned && onCamera && ia.IsAIActive(gameObject))
         {
 
             if (path == null)
