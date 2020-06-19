@@ -37,7 +37,7 @@ public class PlayerDeathPopup : MonoBehaviour
     {
         PlaySound();
         Time.timeScale = 1;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
         Destroy(gameObject);
     }
 

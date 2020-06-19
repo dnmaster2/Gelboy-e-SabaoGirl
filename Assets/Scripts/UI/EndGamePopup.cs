@@ -33,7 +33,7 @@ public class EndGamePopup : MonoBehaviour
     public void Map()
     {
         PlaySound();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void Next()
@@ -46,7 +46,8 @@ public class EndGamePopup : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("level", l + 1);
+            int next = l + 1;
+            PlayerPrefs.SetInt("level", next);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
