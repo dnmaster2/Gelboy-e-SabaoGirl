@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        if (SceneManager.GetActiveScene().name == "Fase1" || SceneManager.GetActiveScene().name == "Fase2" || SceneManager.GetActiveScene().name == "Fase3" || SceneManager.GetActiveScene().name == "Fase4")
+        {
+            FindObjectOfType<AudioManager>().Play("Level");
+        }
     }
 
     #endregion
@@ -37,14 +41,6 @@ public class GameManager : MonoBehaviour
 
 
     #region Custom Callbacks
-
-    void Start()
-    {
-      if(SceneManager.GetActiveScene().name == "Fase1" || SceneManager.GetActiveScene().name == "Fase2" || SceneManager.GetActiveScene().name == "Fase3" || SceneManager.GetActiveScene().name == "Fase4" )
-      {
-        FindObjectOfType<AudioManager>().Play("Level");
-      }
-    }
 
     public void EndLevel(int points)
     {
