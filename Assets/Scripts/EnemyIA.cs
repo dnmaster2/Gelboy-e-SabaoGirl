@@ -20,6 +20,7 @@ public class EnemyIA : MonoBehaviour
     Camera cam;
     CharacterController controller;
     Attributes attributes;
+    IAManagement ia;
     public Path path;
     [Tooltip("Transform para seguir")]
     public Transform targetPosition;
@@ -39,6 +40,7 @@ public class EnemyIA : MonoBehaviour
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
         attributes = GetComponent<Attributes>();
+        ia = GameObject.Find("IAmanager").GetComponent<IAManagement>();
         GameManager.enemies++;
         Debug.Log(GameManager.enemies);
     }
