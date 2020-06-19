@@ -4,35 +4,22 @@ using UnityEngine;
 
 public class IAManagement : MonoBehaviour
 {
-    public List<GameObject> activeIA;
     public int maxActiveIA = 2;
 
-    public bool OnCameraList(GameObject enemyOnCamera)
+    public void OnCameraList(Transform ia)
     {
-        bool alreadyOnList = activeIA.Contains(enemyOnCamera);
-        if (!alreadyOnList && activeIA.Count < maxActiveIA)
+        bool alreadyOnList = ia.root == transform;
+        if (!alreadyOnList && transform.childCount < maxActiveIA)
         {
-            activeIA.Add(enemyOnCamera);
-            print("adcionado " + enemyOnCamera.name + " no Array");
-            return true;
-        }
-        else
-        {
-            return false;
+            ia.SetParent(transform, true);
         }
     }
 
-    public bool IsAIActive(GameObject ia)
+    public void RemoveFromCamera(Transform ia)
     {
-        return activeIA.Contains(ia);
-    }
-
-    public void RemoveFromCamera(GameObject objectToBeRemoved)
-    {
-        if (activeIA.Contains(objectToBeRemoved))
+        if (ia.root == transform)
         {
-            print("Removido " + objectToBeRemoved.name + " no Array");
-            activeIA.Remove(objectToBeRemoved);
+            ia.parent = null;
         }
     }
 }

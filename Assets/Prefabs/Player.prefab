@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 9164582171559729272}
   - component: {fileID: 9164582171559729277}
   - component: {fileID: -3469570410008773558}
+  - component: {fileID: 3670654680321080109}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -591,6 +592,20 @@ MonoBehaviour:
   runningCombat: 0
   regenerationRate: 1.2
   damageCooldown: 3
+  hitFX: {fileID: 100002, guid: e9391f622091e1449bdef4ef15af4948, type: 3}
+  cameraShake: {fileID: 0}
+--- !u!114 &3670654680321080109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164582171559729264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeefb89fe45c62b4193a1c7f66f56c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3259537347938435445
 PrefabInstance:
   m_ObjectHideFlags: 0

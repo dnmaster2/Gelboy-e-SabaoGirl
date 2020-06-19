@@ -30,6 +30,8 @@ public class BuffManager : MonoBehaviour
     [Tooltip("Indica se o canhão está esquipado")]
     public bool cannonIsActive;
 
+    public GameObject particleFX;
+
     private void Start()
     {
         _playerRef = GameObject.FindGameObjectWithTag("Player").transform;
@@ -58,6 +60,9 @@ public class BuffManager : MonoBehaviour
     {
         //adiciona vida ao jogador
         _playerRef.GetComponent<Attributes>().health += lifeFromMask;
+        FindObjectOfType<AudioManager>().Play("PowerUp");
+        GameObject particle = Instantiate(particleFX, _playerRef.position, _playerRef.rotation);
+        Destroy(particle, 3f);
     }
     #endregion
 
@@ -80,7 +85,7 @@ public class BuffManager : MonoBehaviour
     }
 
     #endregion
-    
+
     #region Damage
 
     public IEnumerator DamageBuff(float t)

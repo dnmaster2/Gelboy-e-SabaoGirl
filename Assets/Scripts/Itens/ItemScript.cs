@@ -14,7 +14,7 @@ public class ItemScript : MonoBehaviour
 
     #endregion
 
-
+    public GameObject particleFX;
 
     #region MonoBehaviour Callbakcs
 
@@ -38,6 +38,10 @@ public class ItemScript : MonoBehaviour
             {
                 GameObject p = Instantiate(popup, GameObject.FindGameObjectWithTag("Canvas").transform);
                 p.GetComponent<ItemPopup>().SetupPopup(itemType);
+
+                GameObject particle = Instantiate(particleFX, transform.position, Quaternion.identity);
+                Destroy(particle, 3f);
+
                 Destroy(gameObject);
             }
             else
@@ -45,8 +49,14 @@ public class ItemScript : MonoBehaviour
                 Inventory.instance.AddItem(itemType);
                 GameObject p = Instantiate(popup, GameObject.FindGameObjectWithTag("Canvas").transform);
                 p.GetComponent<ItemPopup>().SetupPopup(itemType);
+
+                GameObject particle = Instantiate(particleFX, transform.position, Quaternion.identity);
+                Destroy(particle, 3f);
+
                 Destroy(gameObject);
             }
+
+            FindObjectOfType<AudioManager>().Play("Pick");
         }
     }
 

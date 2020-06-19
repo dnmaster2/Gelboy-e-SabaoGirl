@@ -21,12 +21,19 @@ public class CombatScript : MonoBehaviour
     bool damageTaken;
     bool dead = false;
     #endregion
+
+    #region Frescura
+    public GameObject hitFX;
+    private CameraShake cameraShake;
+    #endregion
+
     #region MonoBehaviour Callbacks
     private void Awake()
     {
         //Load
         playerAttributes = GetComponent<Attributes>();
         pathScript = GetComponent<PlayerPathScript>();
+        cameraShake = Camera.main.GetComponent<CameraShake>();
         //Chama a corotina recursiva
         StartCoroutine(RegenerationRotine());
     }
@@ -42,7 +49,15 @@ public class CombatScript : MonoBehaviour
             {
                 //Da dano
                 hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
+
+                //Som de acerto aleatorio de 1 a 3
                 FindObjectOfType<AudioManager>().Play("Hit" + Random.Range(1, 4));
+
+                //chama a particula e destroi
+                GameObject particle = Instantiate(hitFX, hit.collider.gameObject.transform.position, Quaternion.identity);
+                StartCoroutine(cameraShake.Shake(.4f, .3f));
+                Destroy(particle, 2f);
+
                 //Caso seja o Tosse, chama o stun
                 if (hit.collider.GetComponent<Attributes>().id == 4)
                 {
@@ -67,7 +82,7 @@ public class CombatScript : MonoBehaviour
         //Dano de soco, chama uma função no script TiredAndPainAttackScript
         if (other.CompareTag("Punch"))
         {
-            other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StartPunch(this);
+            other.transform.parent.gameObject.GetComponent<TiredAndPainAttackScript>().StartPunch(this);
         }
     }
 
@@ -77,7 +92,7 @@ public class CombatScript : MonoBehaviour
         //Saiu da area de soco, chama a função para parar a rotina
         if (other.CompareTag("Punch"))
         {
-            other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StopPunch();
+            other.transform.parent.gameObject.GetComponent<TiredAndPainAttackScript>().StopPunch();
         }
     }
     #endregion
