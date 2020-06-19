@@ -55,7 +55,7 @@ public class CombatScript : MonoBehaviour
 
                 //chama a particula e destroi
                 GameObject particle = Instantiate(hitFX, hit.collider.gameObject.transform.position, Quaternion.identity);
-                StartCoroutine(cameraShake.Shake(.4f, .3f));
+                //StartCoroutine(cameraShake.Shake(.4f, .3f));
                 Destroy(particle, 2f);
 
                 //Caso seja o Tosse, chama o stun
