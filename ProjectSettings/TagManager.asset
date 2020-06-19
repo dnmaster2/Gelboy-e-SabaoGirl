@@ -12,6 +12,8 @@ TagManager:
   - Punch
   - MapSphere
   - Canvas
+  - Gel
+  - Sab
   layers:
   - Default
   - TransparentFX
