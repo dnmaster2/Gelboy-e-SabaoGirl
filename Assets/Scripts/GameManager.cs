@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
           FindObjectOfType<AudioManager>().Play("Main Menu");
         }
 
+        else if (SceneManager.GetActiveScene().name == "FaseBoss")
+        {
+            FindObjectOfType<AudioManager>().Play("BossMusic");
+        }
+
         else
         {
           FindObjectOfType<AudioManager>().Play("Load");
