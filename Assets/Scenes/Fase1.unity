@@ -6288,6 +6288,12 @@ PrefabInstance:
         type: 3}
       propertyPath: cannonShoot
       value: 
+      objectReference: {fileID: 7082388071522270566, guid: 51cabfa98c1874647aa776efda941b3e,
+        type: 3}
+    - target: {fileID: 9164582171559729275, guid: 5c81af89becbda04aa605428d1ec5ea9,
+        type: 3}
+      propertyPath: cannonCursor
+      value: 
       objectReference: {fileID: 1954005762}
     - target: {fileID: 9164582171559729277, guid: 5c81af89becbda04aa605428d1ec5ea9,
         type: 3}
