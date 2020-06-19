@@ -26,7 +26,10 @@ public class GameManager : MonoBehaviour
 
     #region MonoBehaviour Callbakcs
 
-
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
 
     #endregion
 

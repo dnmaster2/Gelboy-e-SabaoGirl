@@ -35,8 +35,7 @@ public class EndGamePopup : MonoBehaviour
         PlaySound();
         SceneManager.LoadScene(1);
     }
-
-    /*
+    
     public void Next()
     {
         PlaySound();
@@ -52,7 +51,6 @@ public class EndGamePopup : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
-    */
 
     void PlaySound()
     {
