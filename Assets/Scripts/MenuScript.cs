@@ -17,4 +17,9 @@ public class MenuScript : MonoBehaviour
         configuracoes.SetActive(!configuracoes.activeSelf);
         menu.SetActive(!menu.activeSelf);
     }
+
+    public void StartButton()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
