@@ -22,24 +22,27 @@ public class ChoosePlayerScript : MonoBehaviour
     public void ChooseGelman()
     {
         PlayerPrefs.SetInt("player", 1);
+        ClickSound();
         OpenClosePlayerInterface();
     }
 
     public void ChooseSabaogirl()
     {
         PlayerPrefs.SetInt("player", 2);
+        ClickSound();
         OpenClosePlayerInterface();
-    }
-
-    public void GoToMapScene()
-    {
-        SceneManager.LoadScene(2);
     }
 
     public void OpenClosePlayerInterface()
     {
         ClickSound();
         _playerInterface.SetActive(!_playerInterface.activeInHierarchy);
+    }
+
+    public void Backmenu()
+    {
+        ClickSound();
+        SceneManager.LoadScene(0);
     }
 
     public void ClickSound()
