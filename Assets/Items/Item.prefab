@@ -59,3 +59,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: {fileID: 11400000, guid: 7b4b5ac7756737f4b8a39dc9500964f9, type: 2}
   popup: {fileID: 7072808667563556897, guid: 86afa25dc225b114496f9d12a0d04694, type: 3}
+  particleFX: {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
