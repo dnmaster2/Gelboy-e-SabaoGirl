@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     public GameObject configuracoes, menu;
+
+    void Start()
+    {
+      FindObjectOfType<AudioManager>().Play("Main Menu");
+    }
+
     public void ChangeScreen()
     {
         configuracoes.SetActive(!configuracoes.activeSelf);

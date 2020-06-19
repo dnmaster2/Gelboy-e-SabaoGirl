@@ -41,6 +41,7 @@ public class CursorControlScript : MonoBehaviour
             if (BuffManager.instance.cannonIsActive)
             {
                 //Pega o clique e gira na direção dele, instancia uma bola de canhão
+                FindObjectOfType<AudioManager>().Play("GelJump");
                 var cannonLookPos = cannonCursor.transform.position - transform.position;
                 cannonLookPos.y = 0;
                 var cannonRotation = Quaternion.LookRotation(cannonLookPos);
@@ -89,6 +90,7 @@ public class CursorControlScript : MonoBehaviour
                     //Atualiza a bool de combate como falsa cada frame, em caso de desistencia de um ataque
                     cursor.transform.position = hit.point;
                     combat = false;
+                    FindObjectOfType<AudioManager>().Play("GelWalk");
                 }
                 if (hit.collider.CompareTag("Enemy"))
                 {
@@ -134,4 +136,3 @@ public class CursorControlScript : MonoBehaviour
     }
     #endregion
 }
-
