@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Canhao
   m_EditorClassIdentifier: 
   name: Canhao
-  icone: {fileID: 21300000, guid: 4072bfbafa0fb7545bc0090ee278367a, type: 3}
+  icone: {fileID: 6236945802616949812, guid: f2de345c92d0767439f030a7ceace89a, type: 3}
   itemPrefab: {fileID: 8176120727955795627, guid: fc5d70f59475e0b4594d6f2c972599cb,
     type: 3}
   duration: 0
