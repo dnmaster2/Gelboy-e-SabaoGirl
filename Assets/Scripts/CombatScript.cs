@@ -82,7 +82,7 @@ public class CombatScript : MonoBehaviour
         //Dano de soco, chama uma função no script TiredAndPainAttackScript
         if (other.CompareTag("Punch"))
         {
-            other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StartPunch(this);
+            other.transform.parent.gameObject.GetComponent<TiredAndPainAttackScript>().StartPunch(this);
         }
     }
 
@@ -92,7 +92,7 @@ public class CombatScript : MonoBehaviour
         //Saiu da area de soco, chama a função para parar a rotina
         if (other.CompareTag("Punch"))
         {
-            other.transform.root.gameObject.GetComponent<TiredAndPainAttackScript>().StopPunch();
+            other.transform.parent.gameObject.GetComponent<TiredAndPainAttackScript>().StopPunch();
         }
     }
     #endregion

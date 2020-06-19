@@ -9,7 +9,7 @@ public class FireScript : MonoBehaviour
 
     private void Awake()
     {
-        damage = transform.root.gameObject.GetComponent<Attributes>().damage;
-        burnTime = transform.root.gameObject.GetComponent<FeverEnemyScript>().burnTime;
+        damage = transform.parent.gameObject.GetComponent<Attributes>().damage;
+        burnTime = transform.parent.gameObject.GetComponent<FeverEnemyScript>().burnTime;
     }
 }

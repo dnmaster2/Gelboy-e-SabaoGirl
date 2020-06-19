@@ -20,6 +20,7 @@ public class EnemyIA : MonoBehaviour
     Camera cam;
     CharacterController controller;
     Attributes attributes;
+    IAManagement ia;
     public Path path;
     [Tooltip("Transform para seguir")]
     public Transform targetPosition;
@@ -39,6 +40,7 @@ public class EnemyIA : MonoBehaviour
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
         attributes = GetComponent<Attributes>();
+        ia = GameObject.Find("IAmanager").GetComponent<IAManagement>();
         GameManager.enemies++;
         Debug.Log(GameManager.enemies);
     }
@@ -72,6 +74,7 @@ public class EnemyIA : MonoBehaviour
     {
         if (attributes.health <= 0 && !dead)
         {
+            ia.RemoveFromCamera(transform);
             Destroy(GetComponent<Collider>());
             Destroy(controller);
             GameObject.Find("Canvas").GetComponent<UIControler>().HitCombo(rewardPoints);
@@ -94,6 +97,7 @@ public class EnemyIA : MonoBehaviour
             targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
             seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
             var lookPos = targetPosition.position - transform.position;
+            ia.OnCameraList(transform);
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
@@ -101,12 +105,12 @@ public class EnemyIA : MonoBehaviour
         else
         {
             targetPosition = null;
+            ia.RemoveFromCamera(transform);
             path = null;
         }
 
-        if (!dead && !stunned && onCamera)
+        if (!dead && !stunned && onCamera && transform.root == ia.transform)
         {
-
             if (path == null)
             {
                 return;
