@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        if (SceneManager.GetActiveScene().name == "Fase1" || SceneManager.GetActiveScene().name == "Fase2" || SceneManager.GetActiveScene().name == "Fase3" || SceneManager.GetActiveScene().name == "Fase4")
+        {
+            FindObjectOfType<AudioManager>().Play("Level");
+        }
     }
 
     #endregion

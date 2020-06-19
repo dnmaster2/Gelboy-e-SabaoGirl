@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CursorControlScript : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class CursorControlScript : MonoBehaviour
             if (BuffManager.instance.cannonIsActive)
             {
                 //Pega o clique e gira na direção dele, instancia uma bola de canhão
+                FindObjectOfType<AudioManager>().Play("GelJump");
                 var cannonLookPos = cannonCursor.transform.position - transform.position;
                 cannonLookPos.y = 0;
                 var cannonRotation = Quaternion.LookRotation(cannonLookPos);
@@ -57,7 +59,11 @@ public class CursorControlScript : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                cannonCursor.transform.position = hit.point;
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    cannonCursor.transform.position = hit.point;
+                }
+
             }
             //Girar o player na direção do cursor
             var cannonLookPos = cannonCursor.transform.position - transform.position;
@@ -84,21 +90,23 @@ public class CursorControlScript : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.CompareTag("Walkable"))
-                {
-                    //Atualiza a bool de combate como falsa cada frame, em caso de desistencia de um ataque
-                    cursor.transform.position = hit.point;
-                    combat = false;
+                if (!EventSystem.current.IsPointerOverGameObject())
+                { 
+                    if (hit.collider.CompareTag("Walkable"))
+                    {
+                        //Atualiza a bool de combate como falsa cada frame, em caso de desistencia de um ataque
+                        cursor.transform.position = hit.point;
+                        combat = false;
+                    }
+                    if (hit.collider.CompareTag("Enemy"))
+                    {
+                        //Se for num inimigo, trocar a booleana para combat, isso vai ser importante no MouseUp
+                        combat = true;
+                        cursor.transform.position = hit.point;
+                        //Salva uma referencia do target, usado no CombatScript
+                        target = hit.collider.gameObject;
+                    }
                 }
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    //Se for num inimigo, trocar a booleana para combat, isso vai ser importante no MouseUp
-                    combat = true;
-                    cursor.transform.position = hit.point;
-                    //Salva uma referencia do target, usado no CombatScript
-                    target = hit.collider.gameObject;
-                }
-
             }
         }
 
@@ -134,4 +142,3 @@ public class CursorControlScript : MonoBehaviour
     }
     #endregion
 }
-

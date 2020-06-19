@@ -42,6 +42,7 @@ public class CombatScript : MonoBehaviour
             {
                 //Da dano
                 hit.collider.gameObject.GetComponent<Attributes>().health -= playerAttributes.damage;
+                FindObjectOfType<AudioManager>().Play("Hit" + Random.Range(1, 4));
                 //Caso seja o Tosse, chama o stun
                 if (hit.collider.GetComponent<Attributes>().id == 4)
                 {
