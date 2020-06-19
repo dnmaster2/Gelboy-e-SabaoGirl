@@ -26,16 +26,19 @@ public class EndGamePopup : MonoBehaviour
 
     public void Menu()
     {
+        PlaySound();
         SceneManager.LoadScene(0);
     }
 
     public void Map()
     {
-        SceneManager.LoadScene(2);
+        PlaySound();
+        SceneManager.LoadScene(1);
     }
-
+    
     public void Next()
     {
+        PlaySound();
         int l = PlayerPrefs.GetInt("level", 0);
         if (l >= 5)
         {
@@ -43,8 +46,17 @@ public class EndGamePopup : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("level", l + 1);
+            int next = l + 1;
+            PlayerPrefs.SetInt("level", next);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+
+    void PlaySound()
+    {
+        Inventory.instance.asInventory.pitch = Random.Range(0.85f, 1.15f);
+        Inventory.instance.asInventory.volume = .15f;
+        Inventory.instance.asInventory.clip = Inventory.instance.adButtonClick;
+        Inventory.instance.asInventory.Play();
     }
 }

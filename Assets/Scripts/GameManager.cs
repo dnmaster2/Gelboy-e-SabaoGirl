@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public static int enemies;
     public GameObject endOfLevelPopup;
     public GameObject playerDeathPopup;
+    public List<GameObject> activeIA;
+    public int maxActiveIA;
 
     #endregion
 
@@ -25,7 +27,10 @@ public class GameManager : MonoBehaviour
 
     #region MonoBehaviour Callbakcs
 
-
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
 
     #endregion
 
@@ -62,6 +67,30 @@ public class GameManager : MonoBehaviour
     {
         GameObject d = Instantiate(playerDeathPopup, GameObject.FindGameObjectWithTag("Canvas").transform);
         d.GetComponent<PlayerDeathPopup>().SetupPopup(points);
+    }
+
+    public bool OnCameraList(GameObject enemyOnCamera)
+    {
+        bool alreadyOnList = activeIA.Contains(enemyOnCamera);
+        if (!alreadyOnList && activeIA.Count < maxActiveIA)
+        {
+            activeIA.Add(enemyOnCamera);
+            print("adcionado " + enemyOnCamera.name + " no Array");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void RemoveFromCamera(GameObject objectToBeRemoved)
+    {
+        if (activeIA.Contains(objectToBeRemoved))
+        {
+            print("Removido " + objectToBeRemoved.name + " no Array");
+            activeIA.Remove(objectToBeRemoved);
+        }
     }
 
     #endregion
