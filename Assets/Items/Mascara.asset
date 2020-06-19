@@ -17,5 +17,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 6200401100308920410, guid: fb05cfc52ca4f784092bab28e4f07425,
     type: 3}
   duration: 0
-  description: Recupere um pouco da sua vida
-  frase: "Uso de m\xE1scaras \xE9 recomendo para diminuir as chances de contamina\xE7\xE3o"
+  description: Recupera 20 de vida.
+  frase: "\"O uso de m\xE1scaras \xE9 recomendo para diminuir as chances de contamina\xE7\xE3o.\""

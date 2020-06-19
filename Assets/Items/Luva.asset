@@ -17,6 +17,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 5585258550537740008, guid: b7602e51048efa04cb265d1b7bdd3199,
     type: 3}
   duration: 5
-  description: "D\xEA o dobro de dano por um certo tempo."
+  description: "D\xEA o dobro de dano por 5 segundos."
   frase: "Esfregar \xE1lcool em gel entre os dedos \xE9 essencial para que sua m\xE3o
     fique totalmente limpa"

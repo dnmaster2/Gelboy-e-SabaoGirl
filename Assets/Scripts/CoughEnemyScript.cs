@@ -11,6 +11,7 @@ public class CoughEnemyScript : MonoBehaviour
     private Transform target;
     private bool wickStarted;
     private IEnumerator explosiveCoroutine;
+    private AudioSource coughSound;
     //-----------------Retirar quando existir animação----------------
     private MeshRenderer mr;
     private Color mtColor;
@@ -61,6 +62,7 @@ public class CoughEnemyScript : MonoBehaviour
         wickStarted = false;
         explosionParticle.Stop();
         explosionParticle.Clear();
+        coughSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -117,7 +119,9 @@ public class CoughEnemyScript : MonoBehaviour
             b = .15f,
             a = 1
         };
-        yield return new WaitForSeconds(wt);
+        yield return new WaitForSeconds(wt - .3f);
+        coughSound.Play();
+        yield return new WaitForSeconds(.3f);
         
         //Dá dano na área
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, er, Vector3.forward);
