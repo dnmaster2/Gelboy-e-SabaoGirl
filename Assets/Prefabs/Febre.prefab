@@ -367,7 +367,7 @@ MonoBehaviour:
   maxViewpoint: 1
   minViewpoint: 0
   rotationSpeed: 1
-  deathTime: 0.5
+  deathTime: 0.05
   targetPosition: {fileID: 0}
   speed: 2
   rewardPoints: 250
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  damage: 10
+  damage: 5
   points: 0
   bestCombo: 0
   actualStage: 0
