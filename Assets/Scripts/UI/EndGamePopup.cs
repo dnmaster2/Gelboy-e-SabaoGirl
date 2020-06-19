@@ -46,7 +46,7 @@ public class EndGamePopup : MonoBehaviour
         }
         else
         {
-            int next = l + 1;
+            int next = SceneManager.GetActiveScene().buildIndex;
             PlayerPrefs.SetInt("level", next);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

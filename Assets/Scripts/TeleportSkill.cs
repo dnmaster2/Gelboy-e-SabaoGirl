@@ -37,7 +37,11 @@ public class TeleportSkill : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                teleportCursor.transform.position = hit.point;
+		    if (hit.collider.CompareTag("Walkable"))
+                    {
+                        teleportCursor.transform.position = hit.point;
+                    }
+
             }
 
             if (Input.GetMouseButtonDown(0))
