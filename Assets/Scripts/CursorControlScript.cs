@@ -22,6 +22,7 @@ public class CursorControlScript : MonoBehaviour
     GameObject target;
     public bool moving;
     public bool combat;
+    public GameObject cannonInHand;
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -31,6 +32,7 @@ public class CursorControlScript : MonoBehaviour
         cam = Camera.main;
         pathfinding = GetComponent<PlayerPathScript>();
         combatScript = GetComponent<CombatScript>();
+        cannonInHand.SetActive(false);
     }
 
     private void Update()
@@ -47,11 +49,14 @@ public class CursorControlScript : MonoBehaviour
                 cannonLookPos.y = 0;
                 var cannonRotation = Quaternion.LookRotation(cannonLookPos);
                 GameObject cannonBall = Instantiate(cannonShoot, transform.position + transform.forward * 2, cannonRotation, transform.parent);
+                BuffManager.instance.CannonUsed();
+                cannonInHand.SetActive(false);
             }
         }
 
         if (BuffManager.instance.cannonIsActive)
         {
+            cannonInHand.SetActive(true);
             //Controle do cursor
             cannonCursor.SetActive(true);
             //Raycast definindo a posição do cursor

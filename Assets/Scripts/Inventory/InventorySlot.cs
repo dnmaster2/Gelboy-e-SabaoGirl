@@ -32,6 +32,7 @@ public class InventorySlot : MonoBehaviour
                     break;
                 case "Canhao":
                     BuffManager.instance.Cannon();
+                    GetComponentInChildren<Button>().interactable = false;
                     break;
                 case "Luva":
                     StartCoroutine(BuffManager.instance.DamageBuff(item.duration));

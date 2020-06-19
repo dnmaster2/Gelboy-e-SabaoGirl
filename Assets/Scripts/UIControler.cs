@@ -79,7 +79,10 @@ public class UIControler : MonoBehaviour
         tempo.text = (timeToEndStage - Mathf.RoundToInt(Time.time)).ToString();
         combo.text = multiplierCombo.ToString() + "X";
         healthTXT.text = playerAttributes.health.ToString();
-        enemyCounterTXT.text = "Inimigos restantes: " + GameManager.enemies.ToString();
+        if (enemyCounterTXT != null)
+        {
+            enemyCounterTXT.text = "Inimigos restantes: " + GameManager.enemies.ToString();
+        }
         //Define que o valor da barra é igual a vida do player
         healthBar.value = playerAttributes.health;
         //Usa Evaluate para mudar a cor da barra dinamicamente
