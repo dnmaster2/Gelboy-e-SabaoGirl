@@ -71,6 +71,7 @@ MonoBehaviour:
   respawnActive: 0
   lifeFromMask: 20
   cannonIsActive: 0
+  particleFX: {fileID: 1844191813266838, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
 --- !u!114 &-4828462476804634048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +88,8 @@ MonoBehaviour:
     type: 3}
   playerDeathPopup: {fileID: 4166209968746912612, guid: 7a0884b73ae1e0241a1ce3f801fe1180,
     type: 3}
+  activeIA: []
+  maxActiveIA: 0
 --- !u!82 &5675412030932555917
 AudioSource:
   m_ObjectHideFlags: 0
