@@ -39,7 +39,7 @@ public class TeleportSkill : MonoBehaviour
             {
 		    if (hit.collider.CompareTag("Walkable"))
                     {
-                        cursor.transform.position = hit.point;
+                        teleportCursor.transform.position = hit.point;
                     }
 
             }
