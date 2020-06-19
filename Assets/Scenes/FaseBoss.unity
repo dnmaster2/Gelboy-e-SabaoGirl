@@ -717,8 +717,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211394710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.72, z: 3.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -2.72, z: 1.97}
+  m_LocalScale: {x: 1.2232088, y: 0.9356041, z: 0.95281917}
   m_Children: []
   m_Father: {fileID: 864626525}
   m_RootOrder: 2
@@ -734,8 +734,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.215804, y: 6.726465, z: 7}
+  m_Center: {x: 0.46409655, y: 2.3632326, z: 0}
 --- !u!114 &211394713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652b542e7ccd3c64084a2b572e8bf799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchDamage: 10
+  punchDamage: 40
 --- !u!1 &306740008
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +960,7 @@ RectTransform:
   - {fileID: 2050170033}
   - {fileID: 1717697199}
   m_Father: {fileID: 490260040}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1252,7 +1252,6 @@ RectTransform:
   - {fileID: 1826873210}
   - {fileID: 1283515497}
   - {fileID: 716175672}
-  - {fileID: 8265110982977908858}
   - {fileID: 444007744}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -1644,6 +1643,7 @@ MonoBehaviour:
   fireDuration: 1
   punchWait: 2.5
   punchDuration: 1.5
+  isDead: 0
 --- !u!114 &864626524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 30
+  damage: 35
   points: 123456
   bestCombo: 0
   actualStage: 0
@@ -9499,84 +9499,6 @@ GameObject:
   - component: {fileID: 1515570450114049461}
   m_Layer: 0
   m_Name: Knee.R
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!222 &8265110982977908836
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8265110982977908859}
-  m_CullTransparentMesh: 0
---- !u!114 &8265110982977908837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8265110982977908859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 49
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Inimigos restantes
---- !u!224 &8265110982977908858
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8265110982977908859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 490260040}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 441, y: 102}
-  m_SizeDelta: {x: 423.70776, y: 41.371147}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &8265110982977908859
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8265110982977908858}
-  - component: {fileID: 8265110982977908836}
-  - component: {fileID: 8265110982977908837}
-  m_Layer: 5
-  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
