@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     #region Private Fields
 
-
+    private GameObject _player;
 
     #endregion
 
@@ -45,9 +45,33 @@ public class GameManager : MonoBehaviour
           FindObjectOfType<AudioManager>().Play("Main Menu");
         }
 
+        else if (SceneManager.GetActiveScene().name == "FaseBoss")
+        {
+            FindObjectOfType<AudioManager>().Play("BossMusic");
+        }
+
         else
         {
           FindObjectOfType<AudioManager>().Play("Load");
+        }
+    }
+
+    private void Awake()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+        int p = PlayerPrefs.GetInt("player", 1);
+        if (p == 1)
+        {
+            _player.GetComponent<TeleportSkill>().enabled = true;
+            GameObject.FindGameObjectWithTag("Gel").SetActive(true);
+            GameObject.FindGameObjectWithTag("Sab").SetActive(false);
+        }
+        else
+        {
+            _player.GetComponent<TeleportSkill>().enabled = false;
+            _player.AddComponent<AreaDamageSkill>().areaSize = 4;
+            GameObject.FindGameObjectWithTag("Gel").SetActive(false);
+            GameObject.FindGameObjectWithTag("Sab").SetActive(true);
         }
     }
 

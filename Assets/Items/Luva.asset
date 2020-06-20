@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Luva
   m_EditorClassIdentifier: 
   name: Luva
-  icone: {fileID: 21300000, guid: 114f2ade2c052fb4f89252ec5d9bc305, type: 3}
+  icone: {fileID: -6573424514016080837, guid: f2de345c92d0767439f030a7ceace89a, type: 3}
   itemPrefab: {fileID: 5585258550537740008, guid: b7602e51048efa04cb265d1b7bdd3199,
     type: 3}
   duration: 5

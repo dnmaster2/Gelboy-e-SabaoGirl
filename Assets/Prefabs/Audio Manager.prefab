@@ -104,3 +104,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: BossMusic
+    clip: {fileID: 8300000, guid: 5c039bfee9e919b4eb3616d72051d4cb, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

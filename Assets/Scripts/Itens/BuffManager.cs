@@ -42,16 +42,11 @@ public class BuffManager : MonoBehaviour
     #region Canhao
     public void Cannon()
     {
-        if (cannonIsActive)
-        {
-            //desativa o canhao
-            cannonIsActive = false;
-        }
-        else
-        {
-            //ativa o canhao
-            cannonIsActive = true;
-        }
+        cannonIsActive = true;
+    }
+    public void CannonUsed()
+    {
+        cannonIsActive = false;
     }
     #endregion
 

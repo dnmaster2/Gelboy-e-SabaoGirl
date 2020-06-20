@@ -30,8 +30,11 @@ public class BossBehaviour : MonoBehaviour
     [Tooltip("Tempo em que o soco ficará ativo")]
     public float punchDuration;
 
+    public bool isDead;
+
     private void Awake()
     {
+        isDead = false;
         anim = GetComponentInChildren<Animator>();
         if (anim == null)
         {
@@ -67,11 +70,12 @@ public class BossBehaviour : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (at.health <= 0)
+        if (at.health <= 0 && !isDead)
         {
             Attributes pAt = _player.GetComponent<Attributes>();
             pAt.points += at.points;
             FindObjectOfType<GameManager>().EndLevel(pAt.points);
+            isDead = true;
         }
     }
 
